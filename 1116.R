@@ -9,16 +9,17 @@ Tab <- function(data, var1, code, var2) {
     tableA <- table(data[data[, i] == code, j])
     Table1 <- cbind(Freq. = tableA,
                     Percent = round(tableA / n * 100, 3),
-                    Cum. = round(cumsum(tableA) / n * 100,  3)) |> data.frame()
-    Table1 <- rbind(Table1, Total = c(sum(Table1$Freq.), sum(Table1$Percent), ''))
+                    Cum. = round(cumsum(tableA) / n * 100, 3)) |> data.frame()
+    Table1 <- rbind(Table1, Total = c(sum(Table1$Freq.), round(sum(Table1$Percent), 0), ''))
     return(Table1)
 }
 
 tscs212 <- read_dta("~/Desktop/NCCU/111-1/三1234社會研究方法/HW/tscs212.dta") |> setDT()
-tscs212 <- (tscs212[!(e24c > 5 | e24d > 5 | e24e > 5), ][, ":="(MH = e24c + e24d + e24e)])
+tscs212 <- (tscs212[!(e24a > 5 | e24b > 5 | e24c > 5 | e24d >  5 | e24e > 5), ]
+                   [, ":="(MH = e24a + e24b + e24c+ e24d + e24e)])
 
-cor(tscs212[, .(e24c, e24d, e24e)])
-data1 <- tscs212[, .(e24c, e24d, e24e, e24f, e24g, MH = as.factor(MH))]
+cor(tscs212[, .(e24a, e24b, e24c, e24d, e24e)])
+data1 <- tscs212[, .(e24a, e24b, e24c, e24d, e24e, e24f, e24g, e24h, MH = as.factor(MH))]
 
 # MH #
 tableA <- table(data1[, MH])
@@ -28,6 +29,16 @@ Table1 <- cbind(Freq. = tableA,
                 Cum. = round(tableB / nrow(data1) * 100, 2)) |> data.frame()
 Table1 <- rbind(Table1, Total = c(sum(Table1$Freq.), sum(Table1$Percent), ''))
 Table1
+
+# e24a #
+Tab(data1, 'e24a', 1, 'MH')
+ggplot(data1[e24a == 1, .(MH = as.factor(MH))], aes(MH))+
+    geom_bar()
+
+# e24b #
+Tab(data1, 'e24b', 1, 'MH')
+ggplot(data1[e24b == 1, .(MH = as.factor(MH))], aes(MH))+
+    geom_bar()
 
 # e24c #
 Tab(data1, 'e24c', 1, 'MH')
@@ -52,6 +63,11 @@ ggplot(data1[e24f == 5, .(MH = as.factor(MH))], aes(MH))+
 # e24g #
 Tab(data1, 'e24g', 1, 'MH')
 ggplot(data1[e24g == 1, .(MH = as.factor(MH))], aes(MH))+
+    geom_bar()
+
+# e24h #
+Tab(data1, 'e24h', 1, 'MH')
+ggplot(data1[e24h == 1, .(MH = as.factor(MH))], aes(MH))+
     geom_bar()
 
 #----------------------------#

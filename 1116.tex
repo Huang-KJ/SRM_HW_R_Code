@@ -1,0 +1,533 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={1116.R},
+  pdfauthor={kyle},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{1116.R}
+\author{kyle}
+\date{2022-11-22}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(haven)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(data.table)}
+\NormalTok{Tab }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(data, var1, code, var2) \{}
+\NormalTok{    data }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(data)}
+\NormalTok{    i }\OtherTok{\textless{}{-}} \FunctionTok{which}\NormalTok{(}\FunctionTok{names}\NormalTok{(data) }\SpecialCharTok{==}\NormalTok{ var1)}
+\NormalTok{    j }\OtherTok{\textless{}{-}} \FunctionTok{which}\NormalTok{(}\FunctionTok{names}\NormalTok{(data) }\SpecialCharTok{==}\NormalTok{ var2)}
+\NormalTok{    n }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(data[data[, i] }\SpecialCharTok{==}\NormalTok{ code, ])}
+\NormalTok{    tableA }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(data[data[, i] }\SpecialCharTok{==}\NormalTok{ code, j])}
+\NormalTok{    Table1 }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}\AttributeTok{Freq. =}\NormalTok{ tableA,}
+                    \AttributeTok{Percent =} \FunctionTok{round}\NormalTok{(tableA }\SpecialCharTok{/}\NormalTok{ n }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{3}\NormalTok{),}
+                    \AttributeTok{Cum. =} \FunctionTok{round}\NormalTok{(}\FunctionTok{cumsum}\NormalTok{(tableA) }\SpecialCharTok{/}\NormalTok{ n }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{3}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} \FunctionTok{data.frame}\NormalTok{()}
+\NormalTok{    Table1 }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(Table1, }\AttributeTok{Total =} \FunctionTok{c}\NormalTok{(}\FunctionTok{sum}\NormalTok{(Table1}\SpecialCharTok{$}\NormalTok{Freq.), }\FunctionTok{round}\NormalTok{(}\FunctionTok{sum}\NormalTok{(Table1}\SpecialCharTok{$}\NormalTok{Percent), }\DecValTok{0}\NormalTok{), }\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{))}
+    \FunctionTok{return}\NormalTok{(Table1)}
+\NormalTok{\}}
+
+\NormalTok{tscs212 }\OtherTok{\textless{}{-}} \FunctionTok{read\_dta}\NormalTok{(}\StringTok{"\textasciitilde{}/Desktop/NCCU/111{-}1/三1234社會研究方法/HW/tscs212.dta"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{setDT}\NormalTok{()}
+\NormalTok{tscs212 }\OtherTok{\textless{}{-}}\NormalTok{ (tscs212[}\SpecialCharTok{!}\NormalTok{(e24a }\SpecialCharTok{\textgreater{}} \DecValTok{5} \SpecialCharTok{|}\NormalTok{ e24b }\SpecialCharTok{\textgreater{}} \DecValTok{5} \SpecialCharTok{|}\NormalTok{ e24c }\SpecialCharTok{\textgreater{}} \DecValTok{5} \SpecialCharTok{|}\NormalTok{ e24d }\SpecialCharTok{\textgreater{}}  \DecValTok{5} \SpecialCharTok{|}\NormalTok{ e24e }\SpecialCharTok{\textgreater{}} \DecValTok{5}\NormalTok{), ]}
+\NormalTok{                   [, }\StringTok{":="}\NormalTok{(}\AttributeTok{MH =}\NormalTok{ e24a }\SpecialCharTok{+}\NormalTok{ e24b }\SpecialCharTok{+}\NormalTok{ e24c}\SpecialCharTok{+}\NormalTok{ e24d }\SpecialCharTok{+}\NormalTok{ e24e)])}
+
+\FunctionTok{cor}\NormalTok{(tscs212[, .(e24a, e24b, e24c, e24d, e24e)])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           e24a      e24b      e24c      e24d      e24e
+## e24a 1.0000000 0.6105912 0.4628381 0.4163958 0.4440856
+## e24b 0.6105912 1.0000000 0.4557066 0.3518958 0.3565775
+## e24c 0.4628381 0.4557066 1.0000000 0.7110378 0.6139077
+## e24d 0.4163958 0.3518958 0.7110378 1.0000000 0.6951400
+## e24e 0.4440856 0.3565775 0.6139077 0.6951400 1.0000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data1 }\OtherTok{\textless{}{-}}\NormalTok{ tscs212[, .(e24a, e24b, e24c, e24d, e24e, e24f, e24g, e24h, }\AttributeTok{MH =} \FunctionTok{as.factor}\NormalTok{(MH))]}
+
+\CommentTok{\# MH \#}
+\NormalTok{tableA }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(data1[, MH])}
+\NormalTok{tableB }\OtherTok{\textless{}{-}} \FunctionTok{cumsum}\NormalTok{(tableA)}
+\NormalTok{Table1 }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}\AttributeTok{Freq. =}\NormalTok{ tableA,}
+                \AttributeTok{Percent =} \FunctionTok{round}\NormalTok{(tableA }\SpecialCharTok{/} \FunctionTok{nrow}\NormalTok{(data1) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{2}\NormalTok{),}
+                \AttributeTok{Cum. =} \FunctionTok{round}\NormalTok{(tableB }\SpecialCharTok{/} \FunctionTok{nrow}\NormalTok{(data1) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{2}\NormalTok{)) }\SpecialCharTok{|\textgreater{}} \FunctionTok{data.frame}\NormalTok{()}
+\NormalTok{Table1 }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(Table1, }\AttributeTok{Total =} \FunctionTok{c}\NormalTok{(}\FunctionTok{sum}\NormalTok{(Table1}\SpecialCharTok{$}\NormalTok{Freq.), }\FunctionTok{sum}\NormalTok{(Table1}\SpecialCharTok{$}\NormalTok{Percent), }\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{))}
+\NormalTok{Table1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Freq. Percent  Cum.
+## 5       352   22.15 22.15
+## 6       118    7.43 29.58
+## 7       152    9.57 39.14
+## 8       138    8.68 47.83
+## 9       140    8.81 56.64
+## 10      159   10.01 66.65
+## 11      119    7.49 74.13
+## 12      101    6.36 80.49
+## 13      101    6.36 86.85
+## 14       58    3.65  90.5
+## 15       54     3.4  93.9
+## 16       21    1.32 95.22
+## 17       26    1.64 96.85
+## 18       15    0.94  97.8
+## 19        8     0.5  98.3
+## 20        7    0.44 98.74
+## 21        5    0.31 99.06
+## 22        5    0.31 99.37
+## 23        4    0.25 99.62
+## 24        4    0.25 99.87
+## 25        2    0.13   100
+## Total  1589     100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# e24a \#}
+\FunctionTok{Tab}\NormalTok{(data1, }\StringTok{\textquotesingle{}e24a\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\StringTok{\textquotesingle{}MH\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Freq. Percent   Cum.
+## 5       352  37.567 37.567
+## 6       107  11.419 48.986
+## 7       120  12.807 61.793
+## 8       105  11.206 72.999
+## 9       104  11.099 84.098
+## 10       56   5.977 90.075
+## 11       37   3.949 94.023
+## 12       22   2.348 96.371
+## 13       23   2.455 98.826
+## 14        7   0.747 99.573
+## 15        1   0.107  99.68
+## 16        1   0.107 99.787
+## 17        1   0.107 99.893
+## 18        0       0 99.893
+## 19        0       0 99.893
+## 20        1   0.107    100
+## 21        0       0    100
+## 22        0       0    100
+## 23        0       0    100
+## 24        0       0    100
+## 25        0       0    100
+## Total   937     100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data1[e24a }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, .(}\AttributeTok{MH =} \FunctionTok{as.factor}\NormalTok{(MH))], }\FunctionTok{aes}\NormalTok{(MH))}\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1116_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# e24b \#}
+\FunctionTok{Tab}\NormalTok{(data1, }\StringTok{\textquotesingle{}e24b\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\StringTok{\textquotesingle{}MH\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Freq. Percent   Cum.
+## 5       352  56.683 56.683
+## 6        62   9.984 66.667
+## 7        66  10.628 77.295
+## 8        56   9.018 86.312
+## 9        25   4.026 90.338
+## 10       22   3.543 93.881
+## 11       17   2.738 96.618
+## 12       11   1.771  98.39
+## 13        1   0.161 98.551
+## 14        4   0.644 99.195
+## 15        1   0.161 99.356
+## 16        2   0.322 99.678
+## 17        1   0.161 99.839
+## 18        1   0.161    100
+## 19        0       0    100
+## 20        0       0    100
+## 21        0       0    100
+## 22        0       0    100
+## 23        0       0    100
+## 24        0       0    100
+## 25        0       0    100
+## Total   621     100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data1[e24b }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, .(}\AttributeTok{MH =} \FunctionTok{as.factor}\NormalTok{(MH))], }\FunctionTok{aes}\NormalTok{(MH))}\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1116_files/figure-latex/unnamed-chunk-1-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# e24c \#}
+\FunctionTok{Tab}\NormalTok{(data1, }\StringTok{\textquotesingle{}e24c\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\StringTok{\textquotesingle{}MH\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Freq. Percent   Cum.
+## 5       352  56.866 56.866
+## 6        88  14.216 71.082
+## 7        89  14.378  85.46
+## 8        34   5.493 90.953
+## 9        26     4.2 95.153
+## 10        9   1.454 96.607
+## 11        9   1.454 98.061
+## 12        6   0.969 99.031
+## 13        2   0.323 99.354
+## 14        2   0.323 99.677
+## 15        1   0.162 99.838
+## 16        1   0.162    100
+## 17        0       0    100
+## 18        0       0    100
+## 19        0       0    100
+## 20        0       0    100
+## 21        0       0    100
+## 22        0       0    100
+## 23        0       0    100
+## 24        0       0    100
+## 25        0       0    100
+## Total   619     100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data1[e24c }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, .(}\AttributeTok{MH =} \FunctionTok{as.factor}\NormalTok{(MH))], }\FunctionTok{aes}\NormalTok{(MH))}\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1116_files/figure-latex/unnamed-chunk-1-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# e24d \#}
+\FunctionTok{Tab}\NormalTok{(data1, }\StringTok{\textquotesingle{}e24d\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\StringTok{\textquotesingle{}MH\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Freq. Percent   Cum.
+## 5       352  42.308 42.308
+## 6       112  13.462 55.769
+## 7       133  15.986 71.755
+## 8        73   8.774 80.529
+## 9        56   6.731  87.26
+## 10       42   5.048 92.308
+## 11       34   4.087 96.394
+## 12       11   1.322 97.716
+## 13       11   1.322 99.038
+## 14        4   0.481 99.519
+## 15        2    0.24  99.76
+## 16        1    0.12  99.88
+## 17        1    0.12    100
+## 18        0       0    100
+## 19        0       0    100
+## 20        0       0    100
+## 21        0       0    100
+## 22        0       0    100
+## 23        0       0    100
+## 24        0       0    100
+## 25        0       0    100
+## Total   832     100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data1[e24d }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, .(}\AttributeTok{MH =} \FunctionTok{as.factor}\NormalTok{(MH))], }\FunctionTok{aes}\NormalTok{(MH))}\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1116_files/figure-latex/unnamed-chunk-1-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# e24e \#}
+\FunctionTok{Tab}\NormalTok{(data1, }\StringTok{\textquotesingle{}e24e\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\StringTok{\textquotesingle{}MH\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Freq. Percent   Cum.
+## 5       352   44.11  44.11
+## 6       103  12.907 57.018
+## 7       117  14.662 71.679
+## 8        71   8.897 80.576
+## 9        58   7.268 87.845
+## 10       35   4.386 92.231
+## 11       36   4.511 96.742
+## 12       10   1.253 97.995
+## 13       13   1.629 99.624
+## 14        0       0 99.624
+## 15        1   0.125 99.749
+## 16        0       0 99.749
+## 17        1   0.125 99.875
+## 18        0       0 99.875
+## 19        0       0 99.875
+## 20        0       0 99.875
+## 21        1   0.125    100
+## 22        0       0    100
+## 23        0       0    100
+## 24        0       0    100
+## 25        0       0    100
+## Total   798     100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data1[e24e }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, .(}\AttributeTok{MH =} \FunctionTok{as.factor}\NormalTok{(MH))], }\FunctionTok{aes}\NormalTok{(MH))}\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1116_files/figure-latex/unnamed-chunk-1-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# e24f \#}
+\FunctionTok{Tab}\NormalTok{(data1, }\StringTok{\textquotesingle{}e24f\textquotesingle{}}\NormalTok{, }\DecValTok{5}\NormalTok{, }\StringTok{\textquotesingle{}MH\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Freq. Percent   Cum.
+## 5       334   44.18  44.18
+## 6        90  11.905 56.085
+## 7       108  14.286  70.37
+## 8        66    8.73 79.101
+## 9        56   7.407 86.508
+## 10       35    4.63 91.138
+## 11       30   3.968 95.106
+## 12       16   2.116 97.222
+## 13       13    1.72 98.942
+## 14        6   0.794 99.735
+## 15        1   0.132 99.868
+## 16        1   0.132    100
+## 17        0       0    100
+## 18        0       0    100
+## 19        0       0    100
+## 20        0       0    100
+## 21        0       0    100
+## 22        0       0    100
+## 23        0       0    100
+## 24        0       0    100
+## 25        0       0    100
+## Total   756     100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data1[e24f }\SpecialCharTok{==} \DecValTok{5}\NormalTok{, .(}\AttributeTok{MH =} \FunctionTok{as.factor}\NormalTok{(MH))], }\FunctionTok{aes}\NormalTok{(MH))}\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1116_files/figure-latex/unnamed-chunk-1-6.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# e24g \#}
+\FunctionTok{Tab}\NormalTok{(data1, }\StringTok{\textquotesingle{}e24g\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\StringTok{\textquotesingle{}MH\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Freq. Percent   Cum.
+## 5       169  46.301 46.301
+## 6        39  10.685 56.986
+## 7        56  15.342 72.329
+## 8        27   7.397 79.726
+## 9        22   6.027 85.753
+## 10       17   4.658 90.411
+## 11       13   3.562 93.973
+## 12        7   1.918  95.89
+## 13       10    2.74  98.63
+## 14        3   0.822 99.452
+## 15        1   0.274 99.726
+## 16        0       0 99.726
+## 17        0       0 99.726
+## 18        0       0 99.726
+## 19        0       0 99.726
+## 20        0       0 99.726
+## 21        0       0 99.726
+## 22        1   0.274    100
+## 23        0       0    100
+## 24        0       0    100
+## 25        0       0    100
+## Total   365     100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data1[e24g }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, .(}\AttributeTok{MH =} \FunctionTok{as.factor}\NormalTok{(MH))], }\FunctionTok{aes}\NormalTok{(MH))}\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1116_files/figure-latex/unnamed-chunk-1-7.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# e24h \#}
+\FunctionTok{Tab}\NormalTok{(data1, }\StringTok{\textquotesingle{}e24h\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\StringTok{\textquotesingle{}MH\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Freq. Percent   Cum.
+## 5       110   53.14  53.14
+## 6        19   9.179 62.319
+## 7        23  11.111  73.43
+## 8        16   7.729 81.159
+## 9        11   5.314 86.473
+## 10       10   4.831 91.304
+## 11        6   2.899 94.203
+## 12        7   3.382 97.585
+## 13        2   0.966 98.551
+## 14        1   0.483 99.034
+## 15        1   0.483 99.517
+## 16        0       0 99.517
+## 17        0       0 99.517
+## 18        0       0 99.517
+## 19        0       0 99.517
+## 20        0       0 99.517
+## 21        0       0 99.517
+## 22        0       0 99.517
+## 23        0       0 99.517
+## 24        1   0.483    100
+## 25        0       0    100
+## Total   207     100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data1[e24h }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, .(}\AttributeTok{MH =} \FunctionTok{as.factor}\NormalTok{(MH))], }\FunctionTok{aes}\NormalTok{(MH))}\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1116_files/figure-latex/unnamed-chunk-1-8.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#library(gmodels)}
+\CommentTok{\#with(data1, CrossTable(e24c))}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}
