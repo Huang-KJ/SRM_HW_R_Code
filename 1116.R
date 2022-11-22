@@ -70,8 +70,6 @@ Tab(data1, 'e24h', 1, 'MH')
 ggplot(data1[e24h == 1, .(MH = as.factor(MH))], aes(MH))+
     geom_bar()
 
-sessionInfo()
-
 #----------------------------#
 #library(gmodels)
 #with(data1, CrossTable(e24c))
