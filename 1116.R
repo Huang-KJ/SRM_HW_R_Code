@@ -14,7 +14,7 @@ Tab <- function(data, var1, code, var2) {
     return(Table1)
 }
 
-tscs212 <- read_dta("~/Desktop/NCCU/111-1/三1234社會研究方法/HW/tscs212.dta") |> setDT()
+tscs212 <- read_dta("../../HW/tscs212.dta") |> setDT()
 tscs212 <- (tscs212[!(e24a > 5 | e24b > 5 | e24c > 5 | e24d >  5 | e24e > 5), ]
                    [, ":="(MH = e24a + e24b + e24c+ e24d + e24e)])
 
@@ -70,6 +70,9 @@ Tab(data1, 'e24h', 1, 'MH')
 ggplot(data1[e24h == 1, .(MH = as.factor(MH))], aes(MH))+
     geom_bar()
 
+sessionInfo()
+
 #----------------------------#
 #library(gmodels)
 #with(data1, CrossTable(e24c))
+#knitr::stitch_rmd("1116.R")
