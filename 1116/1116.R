@@ -14,12 +14,12 @@ Tab <- function(data, var1, code, var2) {
     return(Table1)
 }
 
-tscs212 <- read_dta("../../../HW/tscs212.dta") |> setDT()
-tscs212 <- (tscs212[!(e24a > 5 | e24b > 5 | e24c > 5 | e24d >  5 | e24e > 5), ]
+tscs212 <- read_dta("../../HW/tscs212.dta") |> setDT()
+tscs212 <- (tscs212[!(e24a > 5 | e24b > 5 | e24c > 5 | e24d >  5 | e24e > 5 | e24f > 5 | e24g > 5 | e24h > 5), ]
                    [, ":="(MH = e24a + e24b + e24c+ e24d + e24e)])
-
-cor(tscs212[, .(e24a, e24b, e24c, e24d, e24e)])
 data1 <- tscs212[, .(e24a, e24b, e24c, e24d, e24e, e24f, e24g, e24h, MH = as.factor(MH))]
+
+cor(data1[, .(e24a, e24b, e24c, e24d, e24e)])
 
 # MH #
 tableA <- table(data1[, MH])

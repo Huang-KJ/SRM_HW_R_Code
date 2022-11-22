@@ -1,0 +1,125 @@
+---
+title: "1116即席作業"
+author: "社會三 109204035 黃楷捷"
+date: "2022-11-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Used Packages
+
+```{r}
+library(haven)
+library(ggplot2)
+library(data.table)
+```
+
+## Tab function
+
+```{r}
+Tab <- function(data, var1, code, var2) {
+    data <- as.data.frame(data)
+    i <- which(names(data) == var1)
+    j <- which(names(data) == var2)
+    n <- nrow(data[data[, i] == code, ])
+    tableA <- table(data[data[, i] == code, j])
+    Table1 <- cbind(Freq. = tableA,
+                    Percent = round(tableA / n * 100, 3),
+                    Cum. = round(cumsum(tableA) / n * 100, 3)) |> data.frame()
+    Table1 <- rbind(Table1, Total = c(sum(Table1$Freq.), round(sum(Table1$Percent), 0), ''))
+    return(Table1)
+}
+```
+
+## Import data / Data Preprocessing
+
+```{r}
+tscs212 <- read_dta("../../../HW/tscs212.dta") |> setDT()
+tscs212 <- (tscs212[!(e24a > 5 | e24b > 5 | e24c > 5 | e24d >  5 | e24e > 5 | e24f > 5 | e24g > 5 | e24h > 5), ]
+                   [, ":="(MH = e24a + e24b + e24c+ e24d + e24e)])
+data1 <- tscs212[, .(e24a, e24b, e24c, e24d, e24e, e24f, e24g, e24h, MH = as.factor(MH))]
+```
+
+## Correlation Coefficient
+
+```{r}
+cor(data1[, .(e24a, e24b, e24c, e24d, e24e)])
+```
+
+## Item Analysis
+
+### MH
+
+```{r}
+tableA <- table(data1[, MH])
+tableB <- cumsum(tableA)
+Table1 <- cbind(Freq. = tableA,
+                Percent = round(tableA / nrow(data1) * 100, 2),
+                Cum. = round(tableB / nrow(data1) * 100, 2)) |> data.frame()
+Table1 <- rbind(Table1, Total = c(sum(Table1$Freq.), sum(Table1$Percent), ''))
+Table1
+```
+指數的分佈集中在低分項，尤其5最多。
+
+### Internal Validation
+
+#### e24a
+
+```{r}
+Tab(data1, 'e24a', 1, 'MH')
+```
+e24a等於1時的分佈情形與指數一致，對指數建構有貢獻，具有**內**在鑑別力。
+
+#### e24b
+
+```{r}
+Tab(data1, 'e24b', 1, 'MH')
+```
+e24b等於1時的分佈情形與指數一致，對指數建構有貢獻，具有**內**在鑑別力。
+
+#### e24c
+
+```{r}
+Tab(data1, 'e24c', 1, 'MH')
+```
+e24c等於1時的分佈情形與指數一致，對指數建構有貢獻，具有**內**在鑑別力。
+
+#### e24d
+
+```{r}
+Tab(data1, 'e24d', 1, 'MH')
+```
+e24d等於1時的分佈情形與指數一致，對指數建構有貢獻，具有**內**在鑑別力。
+
+#### e24e
+
+```{r}
+Tab(data1, 'e24e', 1, 'MH')
+```
+e24e等於1時的分佈情形與指數一致，對指數建構有貢獻，具有**內**在鑑別力。
+
+### External Validation
+
+#### e24f
+
+```{r}
+Tab(data1, 'e24f', 5, 'MH')
+```
+e24f等於5時的分佈情形與指數一致，具有**外**在鑑別力。（本題編碼方向不同）
+
+#### e24g
+
+```{r}
+Tab(data1, 'e24g', 1, 'MH')
+```
+e24g等於1時的分佈情形與指數一致，具有**外**在鑑別力。
+
+#### e24h
+
+```{r}
+Tab(data1, 'e24h', 1, 'MH')
+```
+e24h等於1時的分佈情形與指數一致，具有**外**在鑑別力。
