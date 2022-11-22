@@ -101,7 +101,7 @@ Tab &lt;- function(data, var1, code, var2) {
     return(Table1)
 }
 
-tscs212 &lt;- read_dta(&quot;../../HW/tscs212.dta&quot;) |&gt; setDT()
+tscs212 &lt;- read_dta(&quot;../../../HW/tscs212.dta&quot;) |&gt; setDT()
 tscs212 &lt;- (tscs212[!(e24a &gt; 5 | e24b &gt; 5 | e24c &gt; 5 | e24d &gt;  5 | e24e &gt; 5), ]
                    [, &quot;:=&quot;(MH = e24a + e24b + e24c+ e24d + e24e)])
 
@@ -435,7 +435,7 @@ packages used):</p>
 </code></pre>
 <pre><code class="language-r">Sys.time()
 </code></pre>
-<pre><code>## [1] &quot;2022-11-22 19:09:02 CST&quot;
+<pre><code>## [1] &quot;2022-11-22 19:21:57 CST&quot;
 </code></pre>
 
 
