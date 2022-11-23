@@ -8,9 +8,11 @@ Tab <- function(data, var1, code, var2) {
     n <- nrow(data[data[, i] == code, ])
     tableA <- table(data[data[, i] == code, j])
     Table1 <- cbind(Freq. = tableA,
-                    Percent = round(tableA / n * 100, 3),
-                    Cum. = round(cumsum(tableA) / n * 100, 3)) |> data.frame()
-    Table1 <- rbind(Table1, Total = c(sum(Table1$Freq.), round(sum(Table1$Percent), 0), ''))
+                    Percent = tableA / n * 100,
+                    Cum. = cumsum(tableA) / n * 100) |> data.frame()
+    Table1 <- rbind(Table1, Total = c(sum(Table1$Freq.), sum(Table1$Percent), ''))
+    Table1[,c(1:ncol(Table1))] <- Table1[,c(1:ncol(Table1))] |> unlist() |> as.numeric()
+    Table1 <- round(Table1, 3)
     return(Table1)
 }
 
