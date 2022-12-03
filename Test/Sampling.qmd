@@ -1,0 +1,26 @@
+---
+title: Sampling
+date: 2022-12-03
+author: KJ
+format: 
+  html: 
+    toc: true
+    toc-title: Contents
+---
+
+## Introduction
+
+介紹常見的抽樣方法，包含：  
+1. [簡單隨機抽樣](#srs)  
+2. [分層隨機抽樣](#srata)  
+3. [群集隨機抽樣](#cluster)  
+4. [系統性抽樣](#sys) 
+本次使用的資料
+## 簡單隨機抽樣 {#srs}
+
+
+## 分層隨機抽樣 {#srata}
+
+## 群集隨機抽樣 {#cluster}
+
+## 系統性抽樣 {#sys}
