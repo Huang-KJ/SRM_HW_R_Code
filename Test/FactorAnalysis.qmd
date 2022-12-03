@@ -1,20 +1,51 @@
+---
+title: "Factor Analysis"
+date: 2022-12-03
+author: KJ
+format: 
+  html: 
+    toc: true
+    toc-title: Contents
+editor: visual
+---
+
+## 因素分析
+
+使用的套件，`psych`為因素分析函式`fa()`所存在的套件
+
+```{r}
 library(haven)
 library(psych)
 library(data.table)
 options(digits = 2)
+```
 
-tscs212 <- read_dta("../../HW/tscs212.dta") |> setDT()
+## 資料前處理
 
+讀取資料，刪除遺漏值。
+
+```{r}
+tscs212 <- read_dta("../../../HW/tscs212.dta") |> setDT()
 data1 <- tscs212[!(e24a > 5 | e24b > 5 | e24c > 5 | e24d >  5 | e24e > 5),
                  .(e24a, e24b, e24c, e24d, e24e)]
-
 data1.cor <- cor(data1[, .(e24a, e24b, e24c, e24d, e24e)])
+```
 
+## 使用`fa()`進行因素分析
+
+`nfactors`為預計找出的因素數量，`rotate`為轉軸方式，`fa`為因素擷取的方式，`max.iter`為迭代次數。
+
+下列參數為**Stata**預設參數。
+
+```{r}
 data1.fa <- fa(data1, nfactors = 2, rotate = 'none', fm = 'pa', max.iter = 1)
 data1.fa$loadings
 data1.fa$values
+```
 
-#--------------------------------------------------#
+### 其他的設定類型
+
+```{r}
 fa.parallel(data1.cor, n.obs = nrow(data1), fa = "both",
             main = "Scree plots with parallel analysis")
 
@@ -50,3 +81,4 @@ data1 <- tscs212[!(e24a > 5 | e24b > 5 | e24c > 5 | e24d >  5 | e24e > 5 | e24f 
 table(data1$e24f)
 data1$e24f <- car::recode(data1$e24f, "1=5;2=4;3=3;4=2;5=1")
 table(data1$e24f)
+```

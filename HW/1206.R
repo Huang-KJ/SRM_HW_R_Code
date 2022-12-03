@@ -14,4 +14,4 @@ Tab <- function(data, var1, code, var2) {
     Table1 <- round(Table1, 3)
     return(Table1)
 }
-tscs212 <- read_dta("../../HW/tscs212.dta") |> setDT()
+tscs212 <- read_dta("../../HW/2019WVS_TW.dta") |> setDT()
