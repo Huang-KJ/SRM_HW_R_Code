@@ -5,7 +5,8 @@
 2. 要求：加總e24a-e24e成為心理健康指標，分別用e24a-e24e進行內在鑑別，e24f-e24h進行外在鑑別。
 3. [1116即席作業Demo](https://huang-kyle.github.io/SRM_HW_R_Code/1116/1116.html)
 
-## 因素分析
-- [Factor Analysis](https://huang-kyle.github.io/SRM_HW_R_Code/FactorAnalysis.html)
-
 ## HW5
+
+## 補充內容
+- [Factor Analysis](https://huang-kyle.github.io/SRM_HW_R_Code/Test/FactorAnalysis.html)
+- [Sampling](https://huang-kyle.github.io/SRM_HW_R_Code/Test/Sampling.html)
