@@ -41,6 +41,7 @@ data1.cor <- cor(data1[, .(e24a, e24b, e24c, e24d, e24e)])
 data1.fa <- fa(data1, nfactors = 2, rotate = 'none', fm = 'pa', max.iter = 1)
 data1.fa$loadings
 data1.fa$values
+fa.diagram(data1.fa, simple=F)
 ```
 
 ### 其他的設定類型

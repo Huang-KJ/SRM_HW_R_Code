@@ -198,19 +198,23 @@ Cumulative Var 0.52 0.595</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  2.588  0.388 -0.055 -0.153 -0.199</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.diagram</span>(data1.fa, <span class="at">simple=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FactorAnalysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <section id="其他的設定類型" class="level3">
 <h3 class="anchored" data-anchor-id="其他的設定類型">其他的設定類型</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(data1.cor, <span class="at">n.obs =</span> <span class="fu">nrow</span>(data1), <span class="at">fa =</span> <span class="st">"both"</span>,</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">main =</span> <span class="st">"Scree plots with parallel analysis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(data1.cor, <span class="at">n.obs =</span> <span class="fu">nrow</span>(data1), <span class="at">fa =</span> <span class="st">"both"</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">main =</span> <span class="st">"Scree plots with parallel analysis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="FactorAnalysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Parallel analysis suggests that the number of factors =  2  and the number of components =  1 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">factanal</span>(data1, <span class="at">factors =</span> <span class="dv">2</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">factanal</span>(data1, <span class="at">factors =</span> <span class="dv">2</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -237,7 +241,7 @@ Test of the hypothesis that 2 factors are sufficient.
 The chi square statistic is 14 on 1 degree of freedom.
 The p-value is 0.00017 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa</span>(data1.cor, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"none"</span>, <span class="at">fm =</span> <span class="st">"pa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa</span>(data1.cor, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"none"</span>, <span class="at">fm =</span> <span class="st">"pa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Factor Analysis using method =  pa
 Call: fa(r = data1.cor, nfactors = 2, rotate = "none", fm = "pa")
@@ -272,7 +276,7 @@ Correlation of (regression) scores with factors   0.95 0.81
 Multiple R square of scores with factors          0.90 0.65
 Minimum correlation of possible factor scores     0.80 0.30</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa</span>(data1.cor, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"pa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa</span>(data1.cor, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"pa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Factor Analysis using method =  pa
 Call: fa(r = data1.cor, nfactors = 2, rotate = "varimax", fm = "pa")
@@ -307,22 +311,22 @@ Correlation of (regression) scores with factors   0.92 0.84
 Multiple R square of scores with factors          0.84 0.71
 Minimum correlation of possible factor scores     0.69 0.41</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>data1.cor.promax <span class="ot">&lt;-</span> <span class="fu">fa</span>(data1.cor, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"promax"</span>, <span class="at">fm =</span> <span class="st">"pa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>data1.cor.promax <span class="ot">&lt;-</span> <span class="fu">fa</span>(data1.cor, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"promax"</span>, <span class="at">fm =</span> <span class="st">"pa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required namespace: GPArotation</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fsm <span class="ot">&lt;-</span> <span class="cf">function</span>(oblique) {</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">class</span>(oblique)[<span class="dv">2</span>] <span class="sc">==</span> <span class="st">"fa"</span> <span class="sc">&amp;</span> <span class="fu">is.null</span>(oblique<span class="sc">$</span>Phi)) {</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">warning</span>(<span class="st">"Object doesn't look like oblique EFA"</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        P <span class="ot">&lt;-</span> <span class="fu">unclass</span>(oblique<span class="sc">$</span>loading)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        F <span class="ot">&lt;-</span> P <span class="sc">%*%</span> oblique<span class="sc">$</span>Phi</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">colnames</span>(F) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"PA1"</span>, <span class="st">"PA2"</span>)</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span>(F)</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="fu">fsm</span>(data1.cor.promax)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fsm <span class="ot">&lt;-</span> <span class="cf">function</span>(oblique) {</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">class</span>(oblique)[<span class="dv">2</span>] <span class="sc">==</span> <span class="st">"fa"</span> <span class="sc">&amp;</span> <span class="fu">is.null</span>(oblique<span class="sc">$</span>Phi)) {</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">warning</span>(<span class="st">"Object doesn't look like oblique EFA"</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>        P <span class="ot">&lt;-</span> <span class="fu">unclass</span>(oblique<span class="sc">$</span>loading)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>        F <span class="ot">&lt;-</span> P <span class="sc">%*%</span> oblique<span class="sc">$</span>Phi</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">colnames</span>(F) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"PA1"</span>, <span class="st">"PA2"</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span>(F)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="fu">fsm</span>(data1.cor.promax)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      PA1  PA2
 e24a 0.52 0.77
@@ -331,15 +335,15 @@ e24c 0.79 0.58
 e24d 0.91 0.49
 e24e 0.77 0.51</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">factor.plot</span>(data1.cor.promax, <span class="at">labels=</span><span class="fu">rownames</span>(data1.cor.promax<span class="sc">$</span>loadings))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">factor.plot</span>(data1.cor.promax, <span class="at">labels=</span><span class="fu">rownames</span>(data1.cor.promax<span class="sc">$</span>loadings))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="FactorAnalysis_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.diagram</span>(data1.cor.promax, <span class="at">simple=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.diagram</span>(data1.cor.promax, <span class="at">simple=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="FactorAnalysis_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>data1.cor.promax<span class="sc">$</span>weights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>data1.cor.promax<span class="sc">$</span>weights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       PA1    PA2
 e24a 0.073 0.3859
@@ -348,16 +352,16 @@ e24c 0.208 0.1408
 e24d 0.579 0.0084
 e24e 0.193 0.0760</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> tscs212[<span class="sc">!</span>(e24a <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e24b <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e24c <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e24d <span class="sc">&gt;</span>  <span class="dv">5</span> <span class="sc">|</span> e24e <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e24f <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e24g <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e24h <span class="sc">&gt;</span> <span class="dv">5</span>),</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                 .(e24a, e24b, e24c, e24d, e24e, e24f, e24g, e24h)]</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data1<span class="sc">$</span>e24f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> tscs212[<span class="sc">!</span>(e24a <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e24b <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e24c <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e24d <span class="sc">&gt;</span>  <span class="dv">5</span> <span class="sc">|</span> e24e <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e24f <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e24g <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e24h <span class="sc">&gt;</span> <span class="dv">5</span>),</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                 .(e24a, e24b, e24c, e24d, e24e, e24f, e24g, e24h)]</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data1<span class="sc">$</span>e24f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   1   2   3   4   5 
  17  50 305 457 752 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>data1<span class="sc">$</span>e24f <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data1<span class="sc">$</span>e24f, <span class="st">"1=5;2=4;3=3;4=2;5=1"</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data1<span class="sc">$</span>e24f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>data1<span class="sc">$</span>e24f <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data1<span class="sc">$</span>e24f, <span class="st">"1=5;2=4;3=3;4=2;5=1"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data1<span class="sc">$</span>e24f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   1   2   3   4   5 
