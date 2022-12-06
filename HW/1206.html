@@ -193,9 +193,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>              <span class="cf">function</span>(x) {<span class="fu">ifelse</span>(<span class="sc">!</span>(x <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)), <span class="cn">NA</span>, x)}) <span class="sc">|&gt;</span> <span class="fu">setDT</span>()</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>WVS <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(WVS)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>WVS <span class="ot">&lt;-</span> WVS[,MH <span class="sc">:</span><span class="er">=</span> Q132 <span class="sc">+</span> Q133 <span class="sc">+</span> Q134 <span class="sc">+</span> Q135 <span class="sc">+</span> Q136 <span class="sc">+</span> Q137 <span class="sc">+</span> Q138]</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> WVS[, .(Q131,Q132, Q133, Q134, Q135, Q136, Q137, Q138, <span class="at">MH =</span> <span class="fu">as.factor</span>(MH))]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> WVS[, .(Q131,Q132, Q133, Q134, Q135, Q136, Q137, Q138, <span class="at">MH =</span> MH)] <span class="sc">|&gt;</span> <span class="fu">data.frame</span>()</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>tableA <span class="ot">&lt;-</span> <span class="fu">table</span>(data1[, MH])</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>tableA <span class="ot">&lt;-</span> <span class="fu">table</span>(data1[, <span class="st">'MH'</span>])</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>tableB <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(tableA)</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Table1 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">Freq. =</span> tableA,</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">Percent =</span> <span class="fu">round</span>(tableA <span class="sc">/</span> <span class="fu">nrow</span>(data1) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
@@ -222,14 +222,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 28      485   41.31   100
 Total  1174  100.01      </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q132'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data1, <span class="fu">aes</span>(<span class="at">x =</span> MH))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="內部鑑別" class="level3">
+<h3 class="anchored" data-anchor-id="內部鑑別">內部鑑別</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q132'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Freq. Percent    Cum.
-11        0   0.000   0.000
-14        0   0.000   0.000
-15        0   0.000   0.000
-16        0   0.000   0.000
-17        0   0.000   0.000
 18        2   0.211   0.211
 19        1   0.106   0.317
 20        3   0.317   0.634
@@ -243,23 +247,19 @@ Total  1174  100.01      </code></pre>
 28      485  51.268 100.000
 Total   946 100.000      NA</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data1, <span class="fu">aes</span>(<span class="at">x =</span> MH), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data1[data1<span class="sc">$</span>Q132 <span class="sc">==</span> <span class="dv">4</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> MH))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
-<section id="內部鑑別" class="level3">
-<h3 class="anchored" data-anchor-id="內部鑑別">內部鑑別</h3>
+</div>
 <p>Q132等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q133'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q133'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Freq. Percent    Cum.
-11        0   0.000   0.000
-14        0   0.000   0.000
-15        0   0.000   0.000
-16        0   0.000   0.000
-17        0   0.000   0.000
-18        0   0.000   0.000
-19        0   0.000   0.000
 20        1   0.167   0.167
-21        0   0.000   0.167
 22        1   0.167   0.334
 23        3   0.501   0.835
 24        4   0.668   1.503
@@ -269,17 +269,20 @@ Total   946 100.000      NA</code></pre>
 28      485  80.968 100.000
 Total   599 100.000      NA</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data1, <span class="fu">aes</span>(<span class="at">x =</span> MH), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data1[data1<span class="sc">$</span>Q133 <span class="sc">==</span> <span class="dv">4</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> MH))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <p>Q133等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q134'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q134'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Freq. Percent    Cum.
-11        0   0.000   0.000
 14        1   0.099   0.099
-15        0   0.000   0.099
 16        1   0.099   0.198
-17        0   0.000   0.198
 18        2   0.198   0.396
 19        4   0.396   0.793
 20        4   0.396   1.189
@@ -293,17 +296,19 @@ Total   599 100.000      NA</code></pre>
 28      485  48.067 100.000
 Total  1009 100.000      NA</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data1, <span class="fu">aes</span>(<span class="at">x =</span> MH), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data1[data1<span class="sc">$</span>Q134 <span class="sc">==</span> <span class="dv">4</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> MH))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <p>Q134等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q135'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q135'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Freq. Percent    Cum.
-11        0   0.000   0.000
-14        0   0.000   0.000
-15        0   0.000   0.000
 16        1   0.108   0.108
-17        0   0.000   0.108
 18        1   0.108   0.215
 19        3   0.323   0.538
 20        4   0.431   0.969
@@ -317,19 +322,19 @@ Total  1009 100.000      NA</code></pre>
 28      485  52.207 100.000
 Total   929 100.000      NA</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data1, <span class="fu">aes</span>(<span class="at">x =</span> MH), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data1[data1<span class="sc">$</span>Q135 <span class="sc">==</span> <span class="dv">4</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> MH))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <p>Q135等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q136'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q136'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Freq. Percent    Cum.
-11        0   0.000   0.000
-14        0   0.000   0.000
-15        0   0.000   0.000
-16        0   0.000   0.000
 17        1   0.099   0.099
-18        0   0.000   0.099
-19        0   0.000   0.099
 20        3   0.298   0.398
 21        8   0.795   1.193
 22       19   1.889   3.082
@@ -341,20 +346,19 @@ Total   929 100.000      NA</code></pre>
 28      485  48.211 100.000
 Total  1006 100.000      NA</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data1, <span class="fu">aes</span>(<span class="at">x =</span> MH), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data1[data1<span class="sc">$</span>Q136 <span class="sc">==</span> <span class="dv">4</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> MH))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <p>Q136等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q137'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q137'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Freq. Percent    Cum.
-11        0   0.000   0.000
-14        0   0.000   0.000
-15        0   0.000   0.000
-16        0   0.000   0.000
-17        0   0.000   0.000
-18        0   0.000   0.000
 19        1   0.120   0.120
-20        0   0.000   0.120
 21        1   0.120   0.240
 22        1   0.120   0.361
 23       11   1.322   1.683
@@ -365,18 +369,19 @@ Total  1006 100.000      NA</code></pre>
 28      485  58.293 100.000
 Total   832 100.000      NA</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data1, <span class="fu">aes</span>(<span class="at">x =</span> MH), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data1[data1<span class="sc">$</span>Q137 <span class="sc">==</span> <span class="dv">4</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> MH))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <p>Q137等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q138'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q138'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Freq. Percent    Cum.
-11        0   0.000   0.000
-14        0   0.000   0.000
-15        0   0.000   0.000
-16        0   0.000   0.000
 17        1   0.106   0.106
-18        0   0.000   0.106
 19        4   0.425   0.531
 20        3   0.318   0.849
 21        3   0.318   1.168
@@ -389,18 +394,21 @@ Total   832 100.000      NA</code></pre>
 28      485  51.486 100.000
 Total   942 100.000      NA</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data1, <span class="fu">aes</span>(<span class="at">x =</span> MH), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data1[data1<span class="sc">$</span>Q138 <span class="sc">==</span> <span class="dv">4</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> MH))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <p>Q138等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。</p>
 </section>
 <section id="外部鑑別" class="level3">
 <h3 class="anchored" data-anchor-id="外部鑑別">外部鑑別</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q131'</span>, <span class="dv">1</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q131'</span>, <span class="dv">1</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Freq. Percent    Cum.
-11        0   0.000   0.000
-14        0   0.000   0.000
-15        0   0.000   0.000
 16        1   0.161   0.161
 17        1   0.161   0.321
 18        1   0.161   0.482
@@ -416,6 +424,12 @@ Total   942 100.000      NA</code></pre>
 28      341  54.735 100.000
 Total   623 100.000      NA</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data1, <span class="fu">aes</span>(<span class="at">x =</span> MH), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data1[data1<span class="sc">$</span>Q131 <span class="sc">==</span> <span class="dv">1</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> MH))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <p>Q131等於1時的分佈情形與指數一致，具有外在鑑別力。（本題編碼方向不同）</p>
 </section>
@@ -424,22 +438,22 @@ Total   623 100.000      NA</code></pre>
 <h2 class="anchored" data-anchor-id="臺灣社會變遷基本調查-7期1次-工作與生活">臺灣社會變遷基本調查 7期1次 工作與生活</h2>
 <p><img src="images/index2.png" class="img-fluid"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>tscs152 <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"../../../HW/tscs152.dta"</span>, <span class="at">encoding =</span> <span class="st">"big-5"</span>) <span class="sc">|&gt;</span> <span class="fu">setDT</span>()</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>tscs152 <span class="ot">&lt;-</span> (tscs152[<span class="sc">!</span>(e3a <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e3b <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e3c <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e3d <span class="sc">&gt;</span>  <span class="dv">5</span> <span class="sc">|</span> e3e <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e3f <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e3g <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e3h <span class="sc">&gt;</span> <span class="dv">5</span>), ]</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>            [, <span class="st">":="</span>(<span class="at">WK =</span> e3a <span class="sc">+</span> e3b <span class="sc">+</span> e3c<span class="sc">+</span> e3d <span class="sc">+</span> e3e)])</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> tscs152[, .(e3a, e3b, e3c, e3d, e3e, e3f, e3g, e3h, <span class="at">WK =</span> <span class="fu">as.factor</span>(WK))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tscs152 <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"../../../HW/tscs152.dta"</span>, <span class="at">encoding =</span> <span class="st">"big-5"</span>) <span class="sc">|&gt;</span> <span class="fu">setDT</span>()</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>tscs152 <span class="ot">&lt;-</span> (tscs152[<span class="sc">!</span>(e3a <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e3b <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e3c <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e3d <span class="sc">&gt;</span>  <span class="dv">5</span> <span class="sc">|</span> e3e <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e3f <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e3g <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e3h <span class="sc">&gt;</span> <span class="dv">5</span>), ]</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>            [, <span class="st">":="</span>(<span class="at">WK =</span> e3a <span class="sc">+</span> e3b <span class="sc">+</span> e3c<span class="sc">+</span> e3d <span class="sc">+</span> e3e)])</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> tscs152[, .(e3a, e3b, e3c, e3d, e3e, e3f, e3g, e3h, <span class="at">WK =</span> WK)] <span class="sc">|&gt;</span> <span class="fu">data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="內部鑑別-1" class="level3">
 <h3 class="anchored" data-anchor-id="內部鑑別-1">內部鑑別</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># WK  #</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>tableA <span class="ot">&lt;-</span> <span class="fu">table</span>(data1[, WK])</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>tableB <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(tableA)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>Table1 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">Freq. =</span> tableA,</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">Percent =</span> <span class="fu">round</span>(tableA <span class="sc">/</span> <span class="fu">nrow</span>(data1) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">Cum. =</span> <span class="fu">round</span>(tableB <span class="sc">/</span> <span class="fu">nrow</span>(data1) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)) <span class="sc">|&gt;</span> <span class="fu">data.frame</span>()</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>Table1 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(Table1, <span class="at">Total =</span> <span class="fu">c</span>(<span class="fu">sum</span>(Table1<span class="sc">$</span>Freq.), <span class="fu">sum</span>(Table1<span class="sc">$</span>Percent), <span class="st">''</span>))</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>Table1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># WK  #</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>tableA <span class="ot">&lt;-</span> <span class="fu">table</span>(data1[, <span class="st">'WK'</span>])</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>tableB <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(tableA)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>Table1 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">Freq. =</span> tableA,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">Percent =</span> <span class="fu">round</span>(tableA <span class="sc">/</span> <span class="fu">nrow</span>(data1) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">Cum. =</span> <span class="fu">round</span>(tableB <span class="sc">/</span> <span class="fu">nrow</span>(data1) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)) <span class="sc">|&gt;</span> <span class="fu">data.frame</span>()</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>Table1 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(Table1, <span class="at">Total =</span> <span class="fu">c</span>(<span class="fu">sum</span>(Table1<span class="sc">$</span>Freq.), <span class="fu">sum</span>(Table1<span class="sc">$</span>Percent), <span class="st">''</span>))</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>Table1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Freq. Percent  Cum.
 5        13    1.05  1.05
@@ -464,11 +478,16 @@ Total   623 100.000      NA</code></pre>
 25        1    0.08   100
 Total  1239  100.01      </code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data1, <span class="fu">aes</span>(<span class="at">x =</span> WK))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <p>查看指數分佈情形。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3a #</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3a'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3a #</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3a'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Freq. Percent    Cum.
 5        13   5.752   5.752
@@ -485,19 +504,20 @@ Total  1239  100.01      </code></pre>
 16        2   0.885  98.230
 17        2   0.885  99.115
 18        1   0.442  99.558
-19        0   0.000  99.558
-20        0   0.000  99.558
 21        1   0.442 100.000
-22        0   0.000 100.000
-23        0   0.000 100.000
-25        0   0.000 100.000
 Total   226 100.000      NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data1, <span class="fu">aes</span>(<span class="at">x =</span> WK), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data1[data1<span class="sc">$</span>e3a <span class="sc">==</span> <span class="dv">1</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> WK))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>可以看出e3a的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3a為1時，其他題目的回答多半不是1，答題者面對問題e3a和其他問題時的填答方向不一致，因此推論問題e3a在此與其它題目的的內部一致性不高，不具有內部鑑別力。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3b #</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3b'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3b #</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3b'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Freq. Percent    Cum.
 5        13  23.636  23.636
@@ -509,24 +529,19 @@ Total   226 100.000      NA</code></pre>
 11        5   9.091  89.091
 12        1   1.818  90.909
 13        5   9.091 100.000
-14        0   0.000 100.000
-15        0   0.000 100.000
-16        0   0.000 100.000
-17        0   0.000 100.000
-18        0   0.000 100.000
-19        0   0.000 100.000
-20        0   0.000 100.000
-21        0   0.000 100.000
-22        0   0.000 100.000
-23        0   0.000 100.000
-25        0   0.000 100.000
 Total    55 100.000      NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data1, <span class="fu">aes</span>(<span class="at">x =</span> WK), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data1[data1<span class="sc">$</span>e3b <span class="sc">==</span> <span class="dv">1</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> WK))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>可以看出e3b的填答1時，和其他問題的數值合，其分布是集中在數值較低者，意即當填答者回答e3b為1時，其他題目的回答最多是，而不是1者，回答也傾向低分項，答題者面對問題e3b和其他問題時的填答方向呈現一致，因此推論問題e3b在此與其它題目的的內部一致性高，具有內部鑑別力。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3c #</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3c'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3c #</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3c'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Freq. Percent    Cum.
 5        13  22.034  22.034
@@ -539,23 +554,19 @@ Total    55 100.000      NA</code></pre>
 12        7  11.864  96.610
 13        1   1.695  98.305
 14        1   1.695 100.000
-15        0   0.000 100.000
-16        0   0.000 100.000
-17        0   0.000 100.000
-18        0   0.000 100.000
-19        0   0.000 100.000
-20        0   0.000 100.000
-21        0   0.000 100.000
-22        0   0.000 100.000
-23        0   0.000 100.000
-25        0   0.000 100.000
 Total    59 100.000      NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data1, <span class="fu">aes</span>(<span class="at">x =</span> WK), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data1[data1<span class="sc">$</span>e3c <span class="sc">==</span> <span class="dv">1</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> WK))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>可以看出e3c的填答1時，和其他問題的數值合，其分布是集中在數值較低者，意即當填答者回答e3c為1時，其他題目的回答最多是，而不是1者，回答也傾向低分項，答題者面對問題e3c和其他問題時的填答方向呈現一致，因此推論問題e3c在此與其它題目的的內部一致性高，具有內部鑑別力。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3d #</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3d'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3d #</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3d'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Freq. Percent    Cum.
 5        13   8.904   8.904
@@ -571,20 +582,19 @@ Total    59 100.000      NA</code></pre>
 15        4   2.740  95.890
 16        3   2.055  97.945
 17        3   2.055 100.000
-18        0   0.000 100.000
-19        0   0.000 100.000
-20        0   0.000 100.000
-21        0   0.000 100.000
-22        0   0.000 100.000
-23        0   0.000 100.000
-25        0   0.000 100.000
 Total   146 100.000      NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data1, <span class="fu">aes</span>(<span class="at">x =</span> WK), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data1[data1<span class="sc">$</span>e3d <span class="sc">==</span> <span class="dv">1</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> WK))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>可以看出e3d的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3d為1時，其他題目的回答多半不是1，答題者面對問題e3d和其他問題時的填答方向不一致，因此推論問題e3d在此與其它題目的的內部一致性不高，不具有內部鑑別力。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3e #</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3e'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3e #</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3e'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Freq. Percent    Cum.
 5        13   6.075   6.075
@@ -601,13 +611,15 @@ Total   146 100.000      NA</code></pre>
 16       13   6.075  91.121
 17       11   5.140  96.262
 18        4   1.869  98.131
-19        0   0.000  98.131
 20        2   0.935  99.065
 21        2   0.935 100.000
-22        0   0.000 100.000
-23        0   0.000 100.000
-25        0   0.000 100.000
 Total   214 100.000      NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data1, <span class="fu">aes</span>(<span class="at">x =</span> WK), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data1[data1<span class="sc">$</span>e3e <span class="sc">==</span> <span class="dv">1</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> WK))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>可以看出e3e的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3e為1時，其他題目的回答多半不是1，答題者面對問題e3e和其他問題時的填答方向不一致，因此推論問題e3e在此與其它題目的的內部一致性不高，不具有內部鑑別力。</p>
@@ -615,8 +627,8 @@ Total   214 100.000      NA</code></pre>
 <section id="外部鑑別-1" class="level3">
 <h3 class="anchored" data-anchor-id="外部鑑別-1">外部鑑別</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3f #</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3f'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3f #</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3f'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Freq. Percent    Cum.
 5        12   5.742   5.742
@@ -637,15 +649,19 @@ Total   214 100.000      NA</code></pre>
 20        2   0.957  98.565
 21        2   0.957  99.522
 22        1   0.478 100.000
-23        0   0.000 100.000
-25        0   0.000 100.000
 Total   209 100.000      NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data1, <span class="fu">aes</span>(<span class="at">x =</span> WK), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data1[data1<span class="sc">$</span>e3f <span class="sc">==</span> <span class="dv">1</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> WK))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>可以看出e3f的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3f為1時，其他題目的回答多半不是1，答題者面對問題e3f和其他問題時的填答方向不一致，因此推論問題e3f在此與指數中的題目一致性不高，不具有外部鑑別力。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3g #</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3g'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3g #</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3g'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Freq. Percent    Cum.
 5        11   5.093   5.093
@@ -662,19 +678,22 @@ Total   209 100.000      NA</code></pre>
 16       14   6.481  89.352
 17       13   6.019  95.370
 18        6   2.778  98.148
-19        0   0.000  98.148
 20        1   0.463  98.611
 21        2   0.926  99.537
 22        1   0.463 100.000
-23        0   0.000 100.000
-25        0   0.000 100.000
 Total   216 100.000      NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data1, <span class="fu">aes</span>(<span class="at">x =</span> WK), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data1[data1<span class="sc">$</span>e3g <span class="sc">==</span> <span class="dv">1</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> WK))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>可以看出e3g的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3g為1時，其他題目的回答多半不是1，答題者面對問題e3g和其他問題時的填答方向不一致，因此推論問題e3g在此與指數中的題目一致性不高，不具有外部鑑別力。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3h #</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3h'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3h #</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3h'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Freq. Percent    Cum.
 5        12   3.315   3.315
@@ -695,9 +714,14 @@ Total   216 100.000      NA</code></pre>
 20        4   1.105  98.619
 21        1   0.276  98.895
 22        3   0.829  99.724
-23        0   0.000  99.724
 25        1   0.276 100.000
 Total   362 100.000      NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data1, <span class="fu">aes</span>(<span class="at">x =</span> WK), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data1[data1<span class="sc">$</span>e3h <span class="sc">==</span> <span class="dv">1</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> WK))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>可以看出e3h的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3h為1時，其他題目的回答多半不是1，答題者面對問題e3h和其他問題時的填答方向不一致，因此推論問題e3h在此與指數中的題目一致性不高，不具有外部鑑別力。</p>
@@ -707,23 +731,198 @@ Total   362 100.000      NA</code></pre>
 <h2 class="anchored" data-anchor-id="臺灣社會變遷基本調查-7期2次-家庭">臺灣社會變遷基本調查 7期2次 家庭</h2>
 <p><img src="images/index3.png" class="img-fluid"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>tscs161 <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">'../../../HW/tscs161.dta'</span>, <span class="at">encoding =</span> <span class="st">'big5'</span>)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>indexName <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'a1'</span>, <span class="fu">paste0</span>(<span class="st">'d1'</span>, letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]), <span class="fu">paste0</span>(<span class="st">'d2'</span>, letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]))</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> tscs161[, indexName] <span class="sc">|&gt;</span> <span class="fu">setDT</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>tscs161 <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">'../../../HW/tscs161.dta'</span>, <span class="at">encoding =</span> <span class="st">'big5'</span>)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>indexName <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'a1'</span>, <span class="fu">paste0</span>(<span class="st">'d1'</span>, letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]), <span class="fu">paste0</span>(<span class="st">'d2'</span>, letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]))</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> tscs161[, indexName] <span class="sc">|&gt;</span> <span class="fu">setDT</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>我們想要測量性別偏見，由於用於外部鑑別的D2題組選項6-96無法顯示對性別的偏見，因此我們保留作答1-5的受試者，並將女性的1-5反向編碼，此時回答1代表的是總是丈夫在做家事，5代表總是妻子在做家事。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> data1[data1[, <span class="fu">Reduce</span>(<span class="st">`</span><span class="at">&amp;</span><span class="st">`</span>, <span class="fu">lapply</span>(.SD, <span class="st">`</span><span class="at">&lt;=</span><span class="st">`</span>, <span class="dv">5</span>)), .SDcols <span class="ot">=</span> indexName], ..indexName]</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> data1[a1 <span class="sc">==</span> <span class="dv">2</span>]</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>data2<span class="sc">$</span>d2a <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data2<span class="sc">$</span>d2a, <span class="st">'1=5;2=4;4=2;5=1'</span>)</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>data2<span class="sc">$</span>d2b <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data2<span class="sc">$</span>d2b, <span class="st">'1=5;2=4;4=2;5=1'</span>)</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>data2<span class="sc">$</span>d2c <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data2<span class="sc">$</span>d2c, <span class="st">'1=5;2=4;4=2;5=1'</span>)</span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>data2<span class="sc">$</span>d2d <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data2<span class="sc">$</span>d2d, <span class="st">'1=5;2=4;4=2;5=1'</span>)</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(data1[a1 <span class="sc">==</span> <span class="dv">1</span>], data2)</span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> data3[, MH <span class="sc">:</span><span class="er">=</span> d1a <span class="sc">+</span> d1b <span class="sc">+</span> d1c <span class="sc">+</span> d1d <span class="sc">+</span> d1e <span class="sc">+</span> d1f] <span class="sc">|&gt;</span> <span class="fu">data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> data1[data1[, <span class="fu">Reduce</span>(<span class="st">`</span><span class="at">&amp;</span><span class="st">`</span>, <span class="fu">lapply</span>(.SD, <span class="st">`</span><span class="at">&lt;=</span><span class="st">`</span>, <span class="dv">5</span>)), .SDcols <span class="ot">=</span> indexName], ..indexName]</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> data1[a1 <span class="sc">==</span> <span class="dv">2</span>]</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>data2<span class="sc">$</span>d2a <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data2<span class="sc">$</span>d2a, <span class="st">'1=5;2=4;4=2;5=1'</span>)</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>data2<span class="sc">$</span>d2b <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data2<span class="sc">$</span>d2b, <span class="st">'1=5;2=4;4=2;5=1'</span>)</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>data2<span class="sc">$</span>d2c <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data2<span class="sc">$</span>d2c, <span class="st">'1=5;2=4;4=2;5=1'</span>)</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>data2<span class="sc">$</span>d2d <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data2<span class="sc">$</span>d2d, <span class="st">'1=5;2=4;4=2;5=1'</span>)</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(data1[a1 <span class="sc">==</span> <span class="dv">1</span>], data2)</span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> data3[, MH <span class="sc">:</span><span class="er">=</span> d1a <span class="sc">+</span> d1b <span class="sc">+</span> d1c <span class="sc">+</span> d1d <span class="sc">+</span> d1e <span class="sc">+</span> d1f] <span class="sc">|&gt;</span> <span class="fu">data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data3, <span class="st">'MH'</span>, <span class="fu">c</span>(<span class="dv">7</span><span class="sc">:</span><span class="dv">28</span>), <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in data[, i] == code: longer object length is not a multiple of shorter
+object length
+
+Warning in data[, i] == code: longer object length is not a multiple of shorter
+object length</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+11        1   3.333   3.333
+13        2   6.667  10.000
+14        1   3.333  13.333
+16        1   3.333  16.667
+17        3  10.000  26.667
+18        7  23.333  50.000
+19        2   6.667  56.667
+20        3  10.000  66.667
+21        3  10.000  76.667
+22        2   6.667  83.333
+23        1   3.333  86.667
+24        1   3.333  90.000
+25        1   3.333  93.333
+26        2   6.667 100.000
+Total    30 100.000      NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data3, <span class="fu">aes</span>(<span class="at">x =</span> MH))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data3, <span class="st">'d1a'</span>, <span class="dv">5</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+10        1   1.136   1.136
+12        1   1.136   2.273
+14        1   1.136   3.409
+15        2   2.273   5.682
+16        5   5.682  11.364
+17        5   5.682  17.045
+18        9  10.227  27.273
+19        8   9.091  36.364
+20        6   6.818  43.182
+21       14  15.909  59.091
+22        8   9.091  68.182
+23        8   9.091  77.273
+24        9  10.227  87.500
+25        3   3.409  90.909
+26        6   6.818  97.727
+27        1   1.136  98.864
+28        1   1.136 100.000
+Total    88 100.000      NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data3, <span class="fu">aes</span>(<span class="at">x =</span> MH), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data3[data3<span class="sc">$</span>d1a <span class="sc">==</span> <span class="dv">5</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> MH))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data3, <span class="st">'d1b'</span>, <span class="dv">5</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+16        2   6.452   6.452
+17        2   6.452  12.903
+18        1   3.226  16.129
+19        1   3.226  19.355
+20        2   6.452  25.806
+21        5  16.129  41.935
+22        2   6.452  48.387
+23        2   6.452  54.839
+24        5  16.129  70.968
+25        4  12.903  83.871
+26        4  12.903  96.774
+28        1   3.226 100.000
+Total    31 100.000      NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data3, <span class="fu">aes</span>(<span class="at">x =</span> MH), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data3[data3<span class="sc">$</span>d1b <span class="sc">==</span> <span class="dv">5</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> MH))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-24-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data3, <span class="st">'d1c'</span>, <span class="dv">5</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+14        2  33.333  33.333
+21        1  16.667  50.000
+22        1  16.667  66.667
+26        2  33.333 100.000
+Total     6 100.000      NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data3, <span class="fu">aes</span>(<span class="at">x =</span> MH), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data3[data3<span class="sc">$</span>d1c <span class="sc">==</span> <span class="dv">5</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> MH))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-24-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data3, <span class="st">'d1d'</span>, <span class="dv">5</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+13        1   1.695   1.695
+15        4   6.780   8.475
+16        2   3.390  11.864
+17        3   5.085  16.949
+18        3   5.085  22.034
+19        6  10.169  32.203
+20        2   3.390  35.593
+21       10  16.949  52.542
+22        7  11.864  64.407
+23        6  10.169  74.576
+24        6  10.169  84.746
+25        4   6.780  91.525
+26        4   6.780  98.305
+28        1   1.695 100.000
+Total    59 100.000      NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data3, <span class="fu">aes</span>(<span class="at">x =</span> MH), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data3[data3<span class="sc">$</span>d1d <span class="sc">==</span> <span class="dv">5</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> MH))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-24-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data3, <span class="st">'d1e'</span>, <span class="dv">5</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+18        2   7.692   7.692
+20        1   3.846  11.538
+21        6  23.077  34.615
+22        2   7.692  42.308
+23        3  11.538  53.846
+24        7  26.923  80.769
+25        2   7.692  88.462
+26        2   7.692  96.154
+27        1   3.846 100.000
+Total    26 100.000      NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data3, <span class="fu">aes</span>(<span class="at">x =</span> MH), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data3[data3<span class="sc">$</span>d1e <span class="sc">==</span> <span class="dv">5</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> MH))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-24-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data3, <span class="st">'d1f'</span>, <span class="dv">5</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+10        1   0.459   0.459
+11        1   0.459   0.917
+13        5   2.294   3.211
+14        6   2.752   5.963
+15        8   3.670   9.633
+16       13   5.963  15.596
+17       22  10.092  25.688
+18       16   7.339  33.028
+19       24  11.009  44.037
+20       13   5.963  50.000
+21       32  14.679  64.679
+22       18   8.257  72.936
+23       30  13.761  86.697
+24       13   5.963  92.661
+25        7   3.211  95.872
+26        7   3.211  99.083
+27        1   0.459  99.541
+28        1   0.459 100.000
+Total   218 100.000      NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data3, <span class="fu">aes</span>(<span class="at">x =</span> MH), <span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data =</span> data3[data3<span class="sc">$</span>d1f <span class="sc">==</span> <span class="dv">5</span>, ], <span class="fu">aes</span>(<span class="at">x =</span> MH))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="1206_files/figure-html/unnamed-chunk-24-6.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 </section>
 

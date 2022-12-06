@@ -50,55 +50,80 @@ WVS <- lapply(WVS[, paste0('Q', 131:138)],
               function(x) {ifelse(!(x %in% c(1, 2, 3, 4)), NA, x)}) |> setDT()
 WVS <- na.omit(WVS)
 WVS <- WVS[,MH := Q132 + Q133 + Q134 + Q135 + Q136 + Q137 + Q138]
-data1 <- WVS[, .(Q131,Q132, Q133, Q134, Q135, Q136, Q137, Q138, MH = as.factor(MH))]
+data1 <- WVS[, .(Q131,Q132, Q133, Q134, Q135, Q136, Q137, Q138, MH = MH)] |> data.frame()
 
-tableA <- table(data1[, MH])
+tableA <- table(data1[, 'MH'])
 tableB <- cumsum(tableA)
 Table1 <- cbind(Freq. = tableA,
                 Percent = round(tableA / nrow(data1) * 100, 2),
                 Cum. = round(tableB / nrow(data1) * 100, 2)) |> data.frame()
 Table1 <- rbind(Table1, Total = c(sum(Table1$Freq.), sum(Table1$Percent), ''))
 Table1
-
-Tab(data1, 'Q132', 4, 'MH')
+ggplot()+
+    geom_bar(data = data1, aes(x = MH))
 ```
 
 ### 內部鑑別
+
+```{r}
+Tab(data1, 'Q132', 4, 'MH')
+ggplot()+
+    geom_line(data = data1, aes(x = MH), stat = "count")+
+    geom_bar(data = data1[data1$Q132 == 4, ], aes(x = MH))
+```
 
 Q132等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。
 
 ```{r}
 Tab(data1, 'Q133', 4, 'MH')
+ggplot()+
+    geom_line(data = data1, aes(x = MH), stat = "count")+
+    geom_bar(data = data1[data1$Q133 == 4, ], aes(x = MH))
 ```
 
 Q133等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。
 
 ```{r}
 Tab(data1, 'Q134', 4, 'MH')
+ggplot()+
+    geom_line(data = data1, aes(x = MH), stat = "count")+
+    geom_bar(data = data1[data1$Q134 == 4, ], aes(x = MH))
 ```
 
 Q134等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。
 
 ```{r}
 Tab(data1, 'Q135', 4, 'MH')
+ggplot()+
+    geom_line(data = data1, aes(x = MH), stat = "count")+
+    geom_bar(data = data1[data1$Q135 == 4, ], aes(x = MH))
 ```
 
 Q135等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。
 
 ```{r}
 Tab(data1, 'Q136', 4, 'MH')
+ggplot()+
+    geom_line(data = data1, aes(x = MH), stat = "count")+
+    geom_bar(data = data1[data1$Q136 == 4, ], aes(x = MH))
 ```
 
 Q136等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。
 
 ```{r}
 Tab(data1, 'Q137', 4, 'MH')
+ggplot()+
+    geom_line(data = data1, aes(x = MH), stat = "count")+
+    geom_bar(data = data1[data1$Q137 == 4, ], aes(x = MH))
 ```
 
 Q137等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。
 
 ```{r}
 Tab(data1, 'Q138', 4, 'MH')
+ggplot()+
+    geom_line(data = data1, aes(x = MH), stat = "count")+
+    geom_bar(data = data1[data1$Q138 == 4, ], aes(x = MH))
 ```
 
 Q138等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。
@@ -107,6 +132,9 @@ Q138等於4時的分佈情形與指數一致，對指數建構有貢獻，具有
 
 ```{r}
 Tab(data1, 'Q131', 1, 'MH')
+ggplot()+
+    geom_line(data = data1, aes(x = MH), stat = "count")+
+    geom_bar(data = data1[data1$Q131 == 1, ], aes(x = MH))
 ```
 
 Q131等於1時的分佈情形與指數一致，具有外在鑑別力。（本題編碼方向不同）
@@ -119,20 +147,22 @@ Q131等於1時的分佈情形與指數一致，具有外在鑑別力。（本題
 tscs152 <- read_dta("../../../HW/tscs152.dta", encoding = "big-5") |> setDT()
 tscs152 <- (tscs152[!(e3a > 5 | e3b > 5 | e3c > 5 | e3d >  5 | e3e > 5 | e3f > 5 | e3g > 5 | e3h > 5), ]
             [, ":="(WK = e3a + e3b + e3c+ e3d + e3e)])
-data1 <- tscs152[, .(e3a, e3b, e3c, e3d, e3e, e3f, e3g, e3h, WK = as.factor(WK))]
+data1 <- tscs152[, .(e3a, e3b, e3c, e3d, e3e, e3f, e3g, e3h, WK = WK)] |> data.frame()
 ```
 
 ### 內部鑑別
 
 ```{r}
 # WK  #
-tableA <- table(data1[, WK])
+tableA <- table(data1[, 'WK'])
 tableB <- cumsum(tableA)
 Table1 <- cbind(Freq. = tableA,
                 Percent = round(tableA / nrow(data1) * 100, 2),
                 Cum. = round(tableB / nrow(data1) * 100, 2)) |> data.frame()
 Table1 <- rbind(Table1, Total = c(sum(Table1$Freq.), sum(Table1$Percent), ''))
 Table1
+ggplot()+
+    geom_bar(data = data1, aes(x = WK))
 ```
 
 查看指數分佈情形。
@@ -140,6 +170,9 @@ Table1
 ```{r}
 # e3a #
 Tab(data1, 'e3a', 1, 'WK')
+ggplot()+
+    geom_line(data = data1, aes(x = WK), stat = "count")+
+    geom_bar(data = data1[data1$e3a == 1, ], aes(x = WK))
 ```
 
 可以看出e3a的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3a為1時，其他題目的回答多半不是1，答題者面對問題e3a和其他問題時的填答方向不一致，因此推論問題e3a在此與其它題目的的內部一致性不高，不具有內部鑑別力。
@@ -147,6 +180,9 @@ Tab(data1, 'e3a', 1, 'WK')
 ```{r}
 # e3b #
 Tab(data1, 'e3b', 1, 'WK')
+ggplot()+
+    geom_line(data = data1, aes(x = WK), stat = "count")+
+    geom_bar(data = data1[data1$e3b == 1, ], aes(x = WK))
 ```
 
 可以看出e3b的填答1時，和其他問題的數值合，其分布是集中在數值較低者，意即當填答者回答e3b為1時，其他題目的回答最多是，而不是1者，回答也傾向低分項，答題者面對問題e3b和其他問題時的填答方向呈現一致，因此推論問題e3b在此與其它題目的的內部一致性高，具有內部鑑別力。
@@ -154,6 +190,9 @@ Tab(data1, 'e3b', 1, 'WK')
 ```{r}
 # e3c #
 Tab(data1, 'e3c', 1, 'WK')
+ggplot()+
+    geom_line(data = data1, aes(x = WK), stat = "count")+
+    geom_bar(data = data1[data1$e3c == 1, ], aes(x = WK))
 ```
 
 可以看出e3c的填答1時，和其他問題的數值合，其分布是集中在數值較低者，意即當填答者回答e3c為1時，其他題目的回答最多是，而不是1者，回答也傾向低分項，答題者面對問題e3c和其他問題時的填答方向呈現一致，因此推論問題e3c在此與其它題目的的內部一致性高，具有內部鑑別力。
@@ -161,6 +200,9 @@ Tab(data1, 'e3c', 1, 'WK')
 ```{r}
 # e3d #
 Tab(data1, 'e3d', 1, 'WK')
+ggplot()+
+    geom_line(data = data1, aes(x = WK), stat = "count")+
+    geom_bar(data = data1[data1$e3d == 1, ], aes(x = WK))
 ```
 
 可以看出e3d的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3d為1時，其他題目的回答多半不是1，答題者面對問題e3d和其他問題時的填答方向不一致，因此推論問題e3d在此與其它題目的的內部一致性不高，不具有內部鑑別力。
@@ -168,6 +210,9 @@ Tab(data1, 'e3d', 1, 'WK')
 ```{r}
 # e3e #
 Tab(data1, 'e3e', 1, 'WK')
+ggplot()+
+    geom_line(data = data1, aes(x = WK), stat = "count")+
+    geom_bar(data = data1[data1$e3e == 1, ], aes(x = WK))
 ```
 
 可以看出e3e的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3e為1時，其他題目的回答多半不是1，答題者面對問題e3e和其他問題時的填答方向不一致，因此推論問題e3e在此與其它題目的的內部一致性不高，不具有內部鑑別力。
@@ -177,6 +222,9 @@ Tab(data1, 'e3e', 1, 'WK')
 ```{r}
 # e3f #
 Tab(data1, 'e3f', 1, 'WK')
+ggplot()+
+    geom_line(data = data1, aes(x = WK), stat = "count")+
+    geom_bar(data = data1[data1$e3f == 1, ], aes(x = WK))
 ```
 
 可以看出e3f的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3f為1時，其他題目的回答多半不是1，答題者面對問題e3f和其他問題時的填答方向不一致，因此推論問題e3f在此與指數中的題目一致性不高，不具有外部鑑別力。
@@ -184,6 +232,9 @@ Tab(data1, 'e3f', 1, 'WK')
 ```{r}
 # e3g #
 Tab(data1, 'e3g', 1, 'WK')
+ggplot()+
+    geom_line(data = data1, aes(x = WK), stat = "count")+
+    geom_bar(data = data1[data1$e3g == 1, ], aes(x = WK))
 ```
 
 可以看出e3g的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3g為1時，其他題目的回答多半不是1，答題者面對問題e3g和其他問題時的填答方向不一致，因此推論問題e3g在此與指數中的題目一致性不高，不具有外部鑑別力。
@@ -191,6 +242,9 @@ Tab(data1, 'e3g', 1, 'WK')
 ```{r}
 # e3h #
 Tab(data1, 'e3h', 1, 'WK')
+ggplot()+
+    geom_line(data = data1, aes(x = WK), stat = "count")+
+    geom_bar(data = data1[data1$e3h == 1, ], aes(x = WK))
 ```
 
 可以看出e3h的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3h為1時，其他題目的回答多半不是1，答題者面對問題e3h和其他問題時的填答方向不一致，因此推論問題e3h在此與指數中的題目一致性不高，不具有外部鑑別力。
@@ -221,3 +275,42 @@ data3 <- rbind(data1[a1 == 1], data2)
 
 data3 <- data3[, MH := d1a + d1b + d1c + d1d + d1e + d1f] |> data.frame()
 ```
+
+```{r}
+Tab(data3, 'MH', c(7:28), 'MH')
+ggplot()+
+    geom_bar(data = data3, aes(x = MH))
+```
+
+```{r}
+Tab(data3, 'd1a', 5, 'MH')
+ggplot()+
+    geom_line(data = data3, aes(x = MH), stat = "count")+
+    geom_bar(data = data3[data3$d1a == 5, ], aes(x = MH))
+
+Tab(data3, 'd1b', 5, 'MH')
+ggplot()+
+    geom_line(data = data3, aes(x = MH), stat = "count")+
+    geom_bar(data = data3[data3$d1b == 5, ], aes(x = MH))
+
+Tab(data3, 'd1c', 5, 'MH')
+ggplot()+
+    geom_line(data = data3, aes(x = MH), stat = "count")+
+    geom_bar(data = data3[data3$d1c == 5, ], aes(x = MH))
+
+Tab(data3, 'd1d', 5, 'MH')
+ggplot()+
+    geom_line(data = data3, aes(x = MH), stat = "count")+
+    geom_bar(data = data3[data3$d1d == 5, ], aes(x = MH))
+
+Tab(data3, 'd1e', 5, 'MH')
+ggplot()+
+    geom_line(data = data3, aes(x = MH), stat = "count")+
+    geom_bar(data = data3[data3$d1e == 5, ], aes(x = MH))
+
+Tab(data3, 'd1f', 5, 'MH')
+ggplot()+
+    geom_line(data = data3, aes(x = MH), stat = "count")+
+    geom_bar(data = data3[data3$d1f == 5, ], aes(x = MH))
+```
+
