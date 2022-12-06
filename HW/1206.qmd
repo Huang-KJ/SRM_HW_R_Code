@@ -1,0 +1,223 @@
+---
+title: 作業五六七
+date: 2022-12-05
+author: 人口組
+format: 
+  html: 
+    toc: true
+    toc-title: Contents
+    toc-location: body
+    page-layout: full
+    code-overflow: wrap
+editor: visual
+---
+
+## 前言
+
+人口學的普查或調查，通常著重於生死結離的蒐集與紀錄，而較少針對某一概念進行訪問，也因此缺乏能夠建構指數的資料，因此我們找出了與人口生活較相關的幾個指數，來進行分析。\
+由於這些題組缺乏能夠與之進行外在鑑別的問題，因此在部分資料上我們將題組進行切分，有用於建構指數的變項用於內在鑑別，其他則用於外在鑑別。\
+
+## 匯入套件及自訂函式
+
+```{r}
+library(haven)
+library(ggplot2)
+library(data.table)
+Tab <- function(data, var1, code, var2) {
+  data <- as.data.frame(data)
+  i <- which(names(data) == var1)
+  j <- which(names(data) == var2)
+  n <- nrow(data[data[, i] == code, ])
+  tableA <- table(data[data[, i] == code, j])
+  Table1 <- cbind(Freq. = tableA,
+                  Percent = tableA / n * 100,
+                  Cum. = cumsum(tableA) / n * 100) |> data.frame()
+  Table1 <- rbind(Table1, Total = c(sum(Table1$Freq.), sum(Table1$Percent), ''))
+  Table1[,c(1:ncol(Table1))] <- Table1[,c(1:ncol(Table1))] |> unlist() |> as.numeric()
+  Table1 <- round(Table1, 3)
+  return(Table1)
+}
+```
+
+## 世界價值觀調查-安全
+
+![](images/index1.png)
+
+```{r}
+WVS <- read_dta("../../../HW/WVS2019_TW.dta") |> setDT()
+WVS <- WVS[, paste0('Q', 131:138)]
+WVS <- lapply(WVS[, paste0('Q', 131:138)],
+              function(x) {ifelse(!(x %in% c(1, 2, 3, 4)), NA, x)}) |> setDT()
+WVS <- na.omit(WVS)
+WVS <- WVS[,MH := Q132 + Q133 + Q134 + Q135 + Q136 + Q137 + Q138]
+data1 <- WVS[, .(Q131,Q132, Q133, Q134, Q135, Q136, Q137, Q138, MH = as.factor(MH))]
+
+tableA <- table(data1[, MH])
+tableB <- cumsum(tableA)
+Table1 <- cbind(Freq. = tableA,
+                Percent = round(tableA / nrow(data1) * 100, 2),
+                Cum. = round(tableB / nrow(data1) * 100, 2)) |> data.frame()
+Table1 <- rbind(Table1, Total = c(sum(Table1$Freq.), sum(Table1$Percent), ''))
+Table1
+
+Tab(data1, 'Q132', 4, 'MH')
+```
+
+### 內部鑑別
+
+Q132等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。
+
+```{r}
+Tab(data1, 'Q133', 4, 'MH')
+```
+
+Q133等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。
+
+```{r}
+Tab(data1, 'Q134', 4, 'MH')
+```
+
+Q134等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。
+
+```{r}
+Tab(data1, 'Q135', 4, 'MH')
+```
+
+Q135等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。
+
+```{r}
+Tab(data1, 'Q136', 4, 'MH')
+```
+
+Q136等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。
+
+```{r}
+Tab(data1, 'Q137', 4, 'MH')
+```
+
+Q137等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。
+
+```{r}
+Tab(data1, 'Q138', 4, 'MH')
+```
+
+Q138等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。
+
+### 外部鑑別
+
+```{r}
+Tab(data1, 'Q131', 1, 'MH')
+```
+
+Q131等於1時的分佈情形與指數一致，具有外在鑑別力。（本題編碼方向不同）
+
+## 臺灣社會變遷基本調查 7期1次 工作與生活
+
+![](images/index2.png)
+
+```{r}
+tscs152 <- read_dta("../../../HW/tscs152.dta", encoding = "big-5") |> setDT()
+tscs152 <- (tscs152[!(e3a > 5 | e3b > 5 | e3c > 5 | e3d >  5 | e3e > 5 | e3f > 5 | e3g > 5 | e3h > 5), ]
+            [, ":="(WK = e3a + e3b + e3c+ e3d + e3e)])
+data1 <- tscs152[, .(e3a, e3b, e3c, e3d, e3e, e3f, e3g, e3h, WK = as.factor(WK))]
+```
+
+### 內部鑑別
+
+```{r}
+# WK  #
+tableA <- table(data1[, WK])
+tableB <- cumsum(tableA)
+Table1 <- cbind(Freq. = tableA,
+                Percent = round(tableA / nrow(data1) * 100, 2),
+                Cum. = round(tableB / nrow(data1) * 100, 2)) |> data.frame()
+Table1 <- rbind(Table1, Total = c(sum(Table1$Freq.), sum(Table1$Percent), ''))
+Table1
+```
+
+查看指數分佈情形。
+
+```{r}
+# e3a #
+Tab(data1, 'e3a', 1, 'WK')
+```
+
+可以看出e3a的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3a為1時，其他題目的回答多半不是1，答題者面對問題e3a和其他問題時的填答方向不一致，因此推論問題e3a在此與其它題目的的內部一致性不高，不具有內部鑑別力。
+
+```{r}
+# e3b #
+Tab(data1, 'e3b', 1, 'WK')
+```
+
+可以看出e3b的填答1時，和其他問題的數值合，其分布是集中在數值較低者，意即當填答者回答e3b為1時，其他題目的回答最多是，而不是1者，回答也傾向低分項，答題者面對問題e3b和其他問題時的填答方向呈現一致，因此推論問題e3b在此與其它題目的的內部一致性高，具有內部鑑別力。
+
+```{r}
+# e3c #
+Tab(data1, 'e3c', 1, 'WK')
+```
+
+可以看出e3c的填答1時，和其他問題的數值合，其分布是集中在數值較低者，意即當填答者回答e3c為1時，其他題目的回答最多是，而不是1者，回答也傾向低分項，答題者面對問題e3c和其他問題時的填答方向呈現一致，因此推論問題e3c在此與其它題目的的內部一致性高，具有內部鑑別力。
+
+```{r}
+# e3d #
+Tab(data1, 'e3d', 1, 'WK')
+```
+
+可以看出e3d的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3d為1時，其他題目的回答多半不是1，答題者面對問題e3d和其他問題時的填答方向不一致，因此推論問題e3d在此與其它題目的的內部一致性不高，不具有內部鑑別力。
+
+```{r}
+# e3e #
+Tab(data1, 'e3e', 1, 'WK')
+```
+
+可以看出e3e的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3e為1時，其他題目的回答多半不是1，答題者面對問題e3e和其他問題時的填答方向不一致，因此推論問題e3e在此與其它題目的的內部一致性不高，不具有內部鑑別力。
+
+### 外部鑑別
+
+```{r}
+# e3f #
+Tab(data1, 'e3f', 1, 'WK')
+```
+
+可以看出e3f的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3f為1時，其他題目的回答多半不是1，答題者面對問題e3f和其他問題時的填答方向不一致，因此推論問題e3f在此與指數中的題目一致性不高，不具有外部鑑別力。
+
+```{r}
+# e3g #
+Tab(data1, 'e3g', 1, 'WK')
+```
+
+可以看出e3g的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3g為1時，其他題目的回答多半不是1，答題者面對問題e3g和其他問題時的填答方向不一致，因此推論問題e3g在此與指數中的題目一致性不高，不具有外部鑑別力。
+
+```{r}
+# e3h #
+Tab(data1, 'e3h', 1, 'WK')
+```
+
+可以看出e3h的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3h為1時，其他題目的回答多半不是1，答題者面對問題e3h和其他問題時的填答方向不一致，因此推論問題e3h在此與指數中的題目一致性不高，不具有外部鑑別力。
+
+## 臺灣社會變遷基本調查 7期2次 家庭
+
+![](images/index3.png)
+
+```{r}
+tscs161 <- read_dta('../../../HW/tscs161.dta', encoding = 'big5')
+indexName <- c('a1', paste0('d1', letters[1:6]), paste0('d2', letters[1:4]))
+
+data1 <- tscs161[, indexName] |> setDT()
+
+```
+
+我們想要測量性別偏見，由於用於外部鑑別的D2題組選項6-96無法顯示對性別的偏見，因此我們保留作答1-5的受試者，並將女性的1-5反向編碼，此時回答1代表的是總是丈夫在做家事，5代表總是妻子在做家事。
+
+```{r}
+data1 <- data1[data1[, Reduce(`&`, lapply(.SD, `<=`, 5)), .SDcols = indexName], ..indexName]
+
+data2 <- data1[a1 == 2]
+data2$d2a <- car::recode(data2$d2a, '1=5;2=4;4=2;5=1')
+data2$d2b <- car::recode(data2$d2b, '1=5;2=4;4=2;5=1')
+data2$d2c <- car::recode(data2$d2c, '1=5;2=4;4=2;5=1')
+data2$d2d <- car::recode(data2$d2d, '1=5;2=4;4=2;5=1')
+data3 <- rbind(data1[a1 == 1], data2)
+
+data3 <- data3[, MH := d1a + d1b + d1c + d1d + d1e + d1f] |> data.frame()
+```

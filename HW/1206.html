@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="人口組">
+<meta name="dcterms.date" content="2022-12-05">
+
+<title>作業五六七</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="1206_files/libs/clipboard/clipboard.min.js"></script>
+<script src="1206_files/libs/quarto-html/quarto.js"></script>
+<script src="1206_files/libs/quarto-html/popper.min.js"></script>
+<script src="1206_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="1206_files/libs/quarto-html/anchor.min.js"></script>
+<link href="1206_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="1206_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="1206_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="1206_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="1206_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content column-page" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">作業五六七</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>人口組 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 5, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#前言" id="toc-前言">前言</a></li>
+  <li><a href="#匯入套件及自訂函式" id="toc-匯入套件及自訂函式">匯入套件及自訂函式</a></li>
+  <li><a href="#世界價值觀調查-安全" id="toc-世界價值觀調查-安全">世界價值觀調查-安全</a>
+  <ul>
+  <li><a href="#內部鑑別" id="toc-內部鑑別">內部鑑別</a></li>
+  <li><a href="#外部鑑別" id="toc-外部鑑別">外部鑑別</a></li>
+  </ul></li>
+  <li><a href="#臺灣社會變遷基本調查-7期1次-工作與生活" id="toc-臺灣社會變遷基本調查-7期1次-工作與生活">臺灣社會變遷基本調查 7期1次 工作與生活</a>
+  <ul>
+  <li><a href="#內部鑑別-1" id="toc-內部鑑別-1">內部鑑別</a></li>
+  <li><a href="#外部鑑別-1" id="toc-外部鑑別-1">外部鑑別</a></li>
+  </ul></li>
+  <li><a href="#臺灣社會變遷基本調查-7期2次-家庭" id="toc-臺灣社會變遷基本調查-7期2次-家庭">臺灣社會變遷基本調查 7期2次 家庭</a></li>
+  </ul>
+</nav>
+<section id="前言" class="level2">
+<h2 class="anchored" data-anchor-id="前言">前言</h2>
+<p>人口學的普查或調查，通常著重於生死結離的蒐集與紀錄，而較少針對某一概念進行訪問，也因此缺乏能夠建構指數的資料，因此我們找出了與人口生活較相關的幾個指數，來進行分析。<br>
+由於這些題組缺乏能夠與之進行外在鑑別的問題，因此在部分資料上我們將題組進行切分，有用於建構指數的變項用於內在鑑別，其他則用於外在鑑別。<br>
+</p>
+</section>
+<section id="匯入套件及自訂函式" class="level2">
+<h2 class="anchored" data-anchor-id="匯入套件及自訂函式">匯入套件及自訂函式</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Tab <span class="ot">&lt;-</span> <span class="cf">function</span>(data, var1, code, var2) {</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(data)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  i <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">names</span>(data) <span class="sc">==</span> var1)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  j <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">names</span>(data) <span class="sc">==</span> var2)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(data[data[, i] <span class="sc">==</span> code, ])</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  tableA <span class="ot">&lt;-</span> <span class="fu">table</span>(data[data[, i] <span class="sc">==</span> code, j])</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  Table1 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">Freq. =</span> tableA,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">Percent =</span> tableA <span class="sc">/</span> n <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                  <span class="at">Cum. =</span> <span class="fu">cumsum</span>(tableA) <span class="sc">/</span> n <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">|&gt;</span> <span class="fu">data.frame</span>()</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  Table1 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(Table1, <span class="at">Total =</span> <span class="fu">c</span>(<span class="fu">sum</span>(Table1<span class="sc">$</span>Freq.), <span class="fu">sum</span>(Table1<span class="sc">$</span>Percent), <span class="st">''</span>))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  Table1[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(Table1))] <span class="ot">&lt;-</span> Table1[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(Table1))] <span class="sc">|&gt;</span> <span class="fu">unlist</span>() <span class="sc">|&gt;</span> <span class="fu">as.numeric</span>()</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  Table1 <span class="ot">&lt;-</span> <span class="fu">round</span>(Table1, <span class="dv">3</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(Table1)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="世界價值觀調查-安全" class="level2">
+<h2 class="anchored" data-anchor-id="世界價值觀調查-安全">世界價值觀調查-安全</h2>
+<p><img src="images/index1.png" class="img-fluid"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>WVS <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"../../../HW/WVS2019_TW.dta"</span>) <span class="sc">|&gt;</span> <span class="fu">setDT</span>()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>WVS <span class="ot">&lt;-</span> WVS[, <span class="fu">paste0</span>(<span class="st">'Q'</span>, <span class="dv">131</span><span class="sc">:</span><span class="dv">138</span>)]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>WVS <span class="ot">&lt;-</span> <span class="fu">lapply</span>(WVS[, <span class="fu">paste0</span>(<span class="st">'Q'</span>, <span class="dv">131</span><span class="sc">:</span><span class="dv">138</span>)],</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>              <span class="cf">function</span>(x) {<span class="fu">ifelse</span>(<span class="sc">!</span>(x <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)), <span class="cn">NA</span>, x)}) <span class="sc">|&gt;</span> <span class="fu">setDT</span>()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>WVS <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(WVS)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>WVS <span class="ot">&lt;-</span> WVS[,MH <span class="sc">:</span><span class="er">=</span> Q132 <span class="sc">+</span> Q133 <span class="sc">+</span> Q134 <span class="sc">+</span> Q135 <span class="sc">+</span> Q136 <span class="sc">+</span> Q137 <span class="sc">+</span> Q138]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> WVS[, .(Q131,Q132, Q133, Q134, Q135, Q136, Q137, Q138, <span class="at">MH =</span> <span class="fu">as.factor</span>(MH))]</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>tableA <span class="ot">&lt;-</span> <span class="fu">table</span>(data1[, MH])</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>tableB <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(tableA)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Table1 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">Freq. =</span> tableA,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">Percent =</span> <span class="fu">round</span>(tableA <span class="sc">/</span> <span class="fu">nrow</span>(data1) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">Cum. =</span> <span class="fu">round</span>(tableB <span class="sc">/</span> <span class="fu">nrow</span>(data1) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)) <span class="sc">|&gt;</span> <span class="fu">data.frame</span>()</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>Table1 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(Table1, <span class="at">Total =</span> <span class="fu">c</span>(<span class="fu">sum</span>(Table1<span class="sc">$</span>Freq.), <span class="fu">sum</span>(Table1<span class="sc">$</span>Percent), <span class="st">''</span>))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>Table1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent  Cum.
+11        1    0.09  0.09
+14        1    0.09  0.17
+15        2    0.17  0.34
+16        6    0.51  0.85
+17        4    0.34  1.19
+18        6    0.51   1.7
+19       10    0.85  2.56
+20       25    2.13  4.68
+21       40    3.41  8.09
+22       46    3.92 12.01
+23       57    4.86 16.87
+24       63    5.37 22.23
+25      103    8.77 31.01
+26      132   11.24 42.25
+27      193   16.44 58.69
+28      485   41.31   100
+Total  1174  100.01      </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q132'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+11        0   0.000   0.000
+14        0   0.000   0.000
+15        0   0.000   0.000
+16        0   0.000   0.000
+17        0   0.000   0.000
+18        2   0.211   0.211
+19        1   0.106   0.317
+20        3   0.317   0.634
+21        6   0.634   1.268
+22       21   2.220   3.488
+23       30   3.171   6.660
+24       39   4.123  10.782
+25       75   7.928  18.710
+26      104  10.994  29.704
+27      180  19.027  48.732
+28      485  51.268 100.000
+Total   946 100.000      NA</code></pre>
+</div>
+</div>
+<section id="內部鑑別" class="level3">
+<h3 class="anchored" data-anchor-id="內部鑑別">內部鑑別</h3>
+<p>Q132等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q133'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+11        0   0.000   0.000
+14        0   0.000   0.000
+15        0   0.000   0.000
+16        0   0.000   0.000
+17        0   0.000   0.000
+18        0   0.000   0.000
+19        0   0.000   0.000
+20        1   0.167   0.167
+21        0   0.000   0.167
+22        1   0.167   0.334
+23        3   0.501   0.835
+24        4   0.668   1.503
+25       19   3.172   4.674
+26       24   4.007   8.681
+27       62  10.351  19.032
+28      485  80.968 100.000
+Total   599 100.000      NA</code></pre>
+</div>
+</div>
+<p>Q133等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q134'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+11        0   0.000   0.000
+14        1   0.099   0.099
+15        0   0.000   0.099
+16        1   0.099   0.198
+17        0   0.000   0.198
+18        2   0.198   0.396
+19        4   0.396   0.793
+20        4   0.396   1.189
+21        9   0.892   2.081
+22       22   2.180   4.262
+23       34   3.370   7.631
+24       41   4.063  11.695
+25       89   8.821  20.515
+26      127  12.587  33.102
+27      190  18.831  51.933
+28      485  48.067 100.000
+Total  1009 100.000      NA</code></pre>
+</div>
+</div>
+<p>Q134等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q135'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+11        0   0.000   0.000
+14        0   0.000   0.000
+15        0   0.000   0.000
+16        1   0.108   0.108
+17        0   0.000   0.108
+18        1   0.108   0.215
+19        3   0.323   0.538
+20        4   0.431   0.969
+21        3   0.323   1.292
+22       13   1.399   2.691
+23       25   2.691   5.382
+24       42   4.521   9.903
+25       64   6.889  16.792
+26      111  11.948  28.741
+27      177  19.053  47.793
+28      485  52.207 100.000
+Total   929 100.000      NA</code></pre>
+</div>
+</div>
+<p>Q135等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q136'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+11        0   0.000   0.000
+14        0   0.000   0.000
+15        0   0.000   0.000
+16        0   0.000   0.000
+17        1   0.099   0.099
+18        0   0.000   0.099
+19        0   0.000   0.099
+20        3   0.298   0.398
+21        8   0.795   1.193
+22       19   1.889   3.082
+23       31   3.082   6.163
+24       50   4.970  11.133
+25       91   9.046  20.179
+26      127  12.624  32.803
+27      191  18.986  51.789
+28      485  48.211 100.000
+Total  1006 100.000      NA</code></pre>
+</div>
+</div>
+<p>Q136等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q137'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+11        0   0.000   0.000
+14        0   0.000   0.000
+15        0   0.000   0.000
+16        0   0.000   0.000
+17        0   0.000   0.000
+18        0   0.000   0.000
+19        1   0.120   0.120
+20        0   0.000   0.120
+21        1   0.120   0.240
+22        1   0.120   0.361
+23       11   1.322   1.683
+24       23   2.764   4.447
+25       47   5.649  10.096
+26       93  11.178  21.274
+27      170  20.433  41.707
+28      485  58.293 100.000
+Total   832 100.000      NA</code></pre>
+</div>
+</div>
+<p>Q137等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q138'</span>, <span class="dv">4</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+11        0   0.000   0.000
+14        0   0.000   0.000
+15        0   0.000   0.000
+16        0   0.000   0.000
+17        1   0.106   0.106
+18        0   0.000   0.106
+19        4   0.425   0.531
+20        3   0.318   0.849
+21        3   0.318   1.168
+22       11   1.168   2.335
+23       15   1.592   3.928
+24       38   4.034   7.962
+25       73   7.749  15.711
+26      121  12.845  28.556
+27      188  19.958  48.514
+28      485  51.486 100.000
+Total   942 100.000      NA</code></pre>
+</div>
+</div>
+<p>Q138等於4時的分佈情形與指數一致，對指數建構有貢獻，具有內在鑑別力。</p>
+</section>
+<section id="外部鑑別" class="level3">
+<h3 class="anchored" data-anchor-id="外部鑑別">外部鑑別</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'Q131'</span>, <span class="dv">1</span>, <span class="st">'MH'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+11        0   0.000   0.000
+14        0   0.000   0.000
+15        0   0.000   0.000
+16        1   0.161   0.161
+17        1   0.161   0.321
+18        1   0.161   0.482
+19        2   0.321   0.803
+20        5   0.803   1.605
+21        9   1.445   3.050
+22       10   1.605   4.655
+23       13   2.087   6.742
+24       24   3.852  10.594
+25       44   7.063  17.657
+26       55   8.828  26.485
+27      117  18.780  45.265
+28      341  54.735 100.000
+Total   623 100.000      NA</code></pre>
+</div>
+</div>
+<p>Q131等於1時的分佈情形與指數一致，具有外在鑑別力。（本題編碼方向不同）</p>
+</section>
+</section>
+<section id="臺灣社會變遷基本調查-7期1次-工作與生活" class="level2">
+<h2 class="anchored" data-anchor-id="臺灣社會變遷基本調查-7期1次-工作與生活">臺灣社會變遷基本調查 7期1次 工作與生活</h2>
+<p><img src="images/index2.png" class="img-fluid"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>tscs152 <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"../../../HW/tscs152.dta"</span>, <span class="at">encoding =</span> <span class="st">"big-5"</span>) <span class="sc">|&gt;</span> <span class="fu">setDT</span>()</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>tscs152 <span class="ot">&lt;-</span> (tscs152[<span class="sc">!</span>(e3a <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e3b <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e3c <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e3d <span class="sc">&gt;</span>  <span class="dv">5</span> <span class="sc">|</span> e3e <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e3f <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e3g <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> e3h <span class="sc">&gt;</span> <span class="dv">5</span>), ]</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>            [, <span class="st">":="</span>(<span class="at">WK =</span> e3a <span class="sc">+</span> e3b <span class="sc">+</span> e3c<span class="sc">+</span> e3d <span class="sc">+</span> e3e)])</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> tscs152[, .(e3a, e3b, e3c, e3d, e3e, e3f, e3g, e3h, <span class="at">WK =</span> <span class="fu">as.factor</span>(WK))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="內部鑑別-1" class="level3">
+<h3 class="anchored" data-anchor-id="內部鑑別-1">內部鑑別</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># WK  #</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>tableA <span class="ot">&lt;-</span> <span class="fu">table</span>(data1[, WK])</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>tableB <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(tableA)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>Table1 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">Freq. =</span> tableA,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">Percent =</span> <span class="fu">round</span>(tableA <span class="sc">/</span> <span class="fu">nrow</span>(data1) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">Cum. =</span> <span class="fu">round</span>(tableB <span class="sc">/</span> <span class="fu">nrow</span>(data1) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)) <span class="sc">|&gt;</span> <span class="fu">data.frame</span>()</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>Table1 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(Table1, <span class="at">Total =</span> <span class="fu">c</span>(<span class="fu">sum</span>(Table1<span class="sc">$</span>Freq.), <span class="fu">sum</span>(Table1<span class="sc">$</span>Percent), <span class="st">''</span>))</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>Table1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent  Cum.
+5        13    1.05  1.05
+6         9    0.73  1.78
+7        21    1.69  3.47
+8        24    1.94  5.41
+9        60    4.84 10.25
+10      139   11.22 21.47
+11       98    7.91 29.38
+12      170   13.72  43.1
+13       98    7.91 51.01
+14      198   15.98 66.99
+15       72    5.81  72.8
+16      142   11.46 84.26
+17       57     4.6 88.86
+18       83     6.7 95.56
+19       14    1.13 96.69
+20       23    1.86 98.55
+21        8    0.65 99.19
+22        8    0.65 99.84
+23        1    0.08 99.92
+25        1    0.08   100
+Total  1239  100.01      </code></pre>
+</div>
+</div>
+<p>查看指數分佈情形。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3a #</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3a'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+5        13   5.752   5.752
+6         9   3.982   9.735
+7        18   7.965  17.699
+8        15   6.637  24.336
+9        47  20.796  45.133
+10       19   8.407  53.540
+11       37  16.372  69.912
+12       22   9.735  79.646
+13       22   9.735  89.381
+14       10   4.425  93.805
+15        8   3.540  97.345
+16        2   0.885  98.230
+17        2   0.885  99.115
+18        1   0.442  99.558
+19        0   0.000  99.558
+20        0   0.000  99.558
+21        1   0.442 100.000
+22        0   0.000 100.000
+23        0   0.000 100.000
+25        0   0.000 100.000
+Total   226 100.000      NA</code></pre>
+</div>
+</div>
+<p>可以看出e3a的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3a為1時，其他題目的回答多半不是1，答題者面對問題e3a和其他問題時的填答方向不一致，因此推論問題e3a在此與其它題目的的內部一致性不高，不具有內部鑑別力。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3b #</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3b'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+5        13  23.636  23.636
+6         4   7.273  30.909
+7        10  18.182  49.091
+8         6  10.909  60.000
+9         9  16.364  76.364
+10        2   3.636  80.000
+11        5   9.091  89.091
+12        1   1.818  90.909
+13        5   9.091 100.000
+14        0   0.000 100.000
+15        0   0.000 100.000
+16        0   0.000 100.000
+17        0   0.000 100.000
+18        0   0.000 100.000
+19        0   0.000 100.000
+20        0   0.000 100.000
+21        0   0.000 100.000
+22        0   0.000 100.000
+23        0   0.000 100.000
+25        0   0.000 100.000
+Total    55 100.000      NA</code></pre>
+</div>
+</div>
+<p>可以看出e3b的填答1時，和其他問題的數值合，其分布是集中在數值較低者，意即當填答者回答e3b為1時，其他題目的回答最多是，而不是1者，回答也傾向低分項，答題者面對問題e3b和其他問題時的填答方向呈現一致，因此推論問題e3b在此與其它題目的的內部一致性高，具有內部鑑別力。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3c #</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3c'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+5        13  22.034  22.034
+6         6  10.169  32.203
+7        14  23.729  55.932
+8         2   3.390  59.322
+9         6  10.169  69.492
+10        4   6.780  76.271
+11        5   8.475  84.746
+12        7  11.864  96.610
+13        1   1.695  98.305
+14        1   1.695 100.000
+15        0   0.000 100.000
+16        0   0.000 100.000
+17        0   0.000 100.000
+18        0   0.000 100.000
+19        0   0.000 100.000
+20        0   0.000 100.000
+21        0   0.000 100.000
+22        0   0.000 100.000
+23        0   0.000 100.000
+25        0   0.000 100.000
+Total    59 100.000      NA</code></pre>
+</div>
+</div>
+<p>可以看出e3c的填答1時，和其他問題的數值合，其分布是集中在數值較低者，意即當填答者回答e3c為1時，其他題目的回答最多是，而不是1者，回答也傾向低分項，答題者面對問題e3c和其他問題時的填答方向呈現一致，因此推論問題e3c在此與其它題目的的內部一致性高，具有內部鑑別力。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3d #</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3d'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+5        13   8.904   8.904
+6         8   5.479  14.384
+7        13   8.904  23.288
+8        15  10.274  33.562
+9        14   9.589  43.151
+10       21  14.384  57.534
+11       13   8.904  66.438
+12       13   8.904  75.342
+13       14   9.589  84.932
+14       12   8.219  93.151
+15        4   2.740  95.890
+16        3   2.055  97.945
+17        3   2.055 100.000
+18        0   0.000 100.000
+19        0   0.000 100.000
+20        0   0.000 100.000
+21        0   0.000 100.000
+22        0   0.000 100.000
+23        0   0.000 100.000
+25        0   0.000 100.000
+Total   146 100.000      NA</code></pre>
+</div>
+</div>
+<p>可以看出e3d的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3d為1時，其他題目的回答多半不是1，答題者面對問題e3d和其他問題時的填答方向不一致，因此推論問題e3d在此與其它題目的的內部一致性不高，不具有內部鑑別力。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3e #</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3e'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+5        13   6.075   6.075
+6         9   4.206  10.280
+7        10   4.673  14.953
+8        16   7.477  22.430
+9        17   7.944  30.374
+10       22  10.280  40.654
+11       17   7.944  48.598
+12       28  13.084  61.682
+13       22  10.280  71.963
+14       16   7.477  79.439
+15       12   5.607  85.047
+16       13   6.075  91.121
+17       11   5.140  96.262
+18        4   1.869  98.131
+19        0   0.000  98.131
+20        2   0.935  99.065
+21        2   0.935 100.000
+22        0   0.000 100.000
+23        0   0.000 100.000
+25        0   0.000 100.000
+Total   214 100.000      NA</code></pre>
+</div>
+</div>
+<p>可以看出e3e的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3e為1時，其他題目的回答多半不是1，答題者面對問題e3e和其他問題時的填答方向不一致，因此推論問題e3e在此與其它題目的的內部一致性不高，不具有內部鑑別力。</p>
+</section>
+<section id="外部鑑別-1" class="level3">
+<h3 class="anchored" data-anchor-id="外部鑑別-1">外部鑑別</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3f #</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3f'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+5        12   5.742   5.742
+6         6   2.871   8.612
+7        12   5.742  14.354
+8        11   5.263  19.617
+9        16   7.656  27.273
+10       27  12.919  40.191
+11       24  11.483  51.675
+12       26  12.440  64.115
+13       13   6.220  70.335
+14       28  13.397  83.732
+15        7   3.349  87.081
+16       10   4.785  91.866
+17        8   3.828  95.694
+18        3   1.435  97.129
+19        1   0.478  97.608
+20        2   0.957  98.565
+21        2   0.957  99.522
+22        1   0.478 100.000
+23        0   0.000 100.000
+25        0   0.000 100.000
+Total   209 100.000      NA</code></pre>
+</div>
+</div>
+<p>可以看出e3f的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3f為1時，其他題目的回答多半不是1，答題者面對問題e3f和其他問題時的填答方向不一致，因此推論問題e3f在此與指數中的題目一致性不高，不具有外部鑑別力。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3g #</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3g'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+5        11   5.093   5.093
+6         6   2.778   7.870
+7        13   6.019  13.889
+8        14   6.481  20.370
+9        16   7.407  27.778
+10       30  13.889  41.667
+11       23  10.648  52.315
+12       23  10.648  62.963
+13       12   5.556  68.519
+14       24  11.111  79.630
+15        7   3.241  82.870
+16       14   6.481  89.352
+17       13   6.019  95.370
+18        6   2.778  98.148
+19        0   0.000  98.148
+20        1   0.463  98.611
+21        2   0.926  99.537
+22        1   0.463 100.000
+23        0   0.000 100.000
+25        0   0.000 100.000
+Total   216 100.000      NA</code></pre>
+</div>
+</div>
+<p>可以看出e3g的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3g為1時，其他題目的回答多半不是1，答題者面對問題e3g和其他問題時的填答方向不一致，因此推論問題e3g在此與指數中的題目一致性不高，不具有外部鑑別力。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e3h #</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Tab</span>(data1, <span class="st">'e3h'</span>, <span class="dv">1</span>, <span class="st">'WK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Freq. Percent    Cum.
+5        12   3.315   3.315
+6         9   2.486   5.801
+7        13   3.591   9.392
+8        16   4.420  13.812
+9        26   7.182  20.994
+10       41  11.326  32.320
+11       31   8.564  40.884
+12       45  12.431  53.315
+13       34   9.392  62.707
+14       49  13.536  76.243
+15       18   4.972  81.215
+16       28   7.735  88.950
+17       19   5.249  94.199
+18       10   2.762  96.961
+19        2   0.552  97.514
+20        4   1.105  98.619
+21        1   0.276  98.895
+22        3   0.829  99.724
+23        0   0.000  99.724
+25        1   0.276 100.000
+Total   362 100.000      NA</code></pre>
+</div>
+</div>
+<p>可以看出e3h的填答1時，和其他問題的數值合，其分布不集中在數值較低者，意即當填答者回答e3h為1時，其他題目的回答多半不是1，答題者面對問題e3h和其他問題時的填答方向不一致，因此推論問題e3h在此與指數中的題目一致性不高，不具有外部鑑別力。</p>
+</section>
+</section>
+<section id="臺灣社會變遷基本調查-7期2次-家庭" class="level2">
+<h2 class="anchored" data-anchor-id="臺灣社會變遷基本調查-7期2次-家庭">臺灣社會變遷基本調查 7期2次 家庭</h2>
+<p><img src="images/index3.png" class="img-fluid"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>tscs161 <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">'../../../HW/tscs161.dta'</span>, <span class="at">encoding =</span> <span class="st">'big5'</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>indexName <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'a1'</span>, <span class="fu">paste0</span>(<span class="st">'d1'</span>, letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]), <span class="fu">paste0</span>(<span class="st">'d2'</span>, letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]))</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> tscs161[, indexName] <span class="sc">|&gt;</span> <span class="fu">setDT</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>我們想要測量性別偏見，由於用於外部鑑別的D2題組選項6-96無法顯示對性別的偏見，因此我們保留作答1-5的受試者，並將女性的1-5反向編碼，此時回答1代表的是總是丈夫在做家事，5代表總是妻子在做家事。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> data1[data1[, <span class="fu">Reduce</span>(<span class="st">`</span><span class="at">&amp;</span><span class="st">`</span>, <span class="fu">lapply</span>(.SD, <span class="st">`</span><span class="at">&lt;=</span><span class="st">`</span>, <span class="dv">5</span>)), .SDcols <span class="ot">=</span> indexName], ..indexName]</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> data1[a1 <span class="sc">==</span> <span class="dv">2</span>]</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>data2<span class="sc">$</span>d2a <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data2<span class="sc">$</span>d2a, <span class="st">'1=5;2=4;4=2;5=1'</span>)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>data2<span class="sc">$</span>d2b <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data2<span class="sc">$</span>d2b, <span class="st">'1=5;2=4;4=2;5=1'</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>data2<span class="sc">$</span>d2c <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data2<span class="sc">$</span>d2c, <span class="st">'1=5;2=4;4=2;5=1'</span>)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>data2<span class="sc">$</span>d2d <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data2<span class="sc">$</span>d2d, <span class="st">'1=5;2=4;4=2;5=1'</span>)</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(data1[a1 <span class="sc">==</span> <span class="dv">1</span>], data2)</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> data3[, MH <span class="sc">:</span><span class="er">=</span> d1a <span class="sc">+</span> d1b <span class="sc">+</span> d1c <span class="sc">+</span> d1d <span class="sc">+</span> d1e <span class="sc">+</span> d1f] <span class="sc">|&gt;</span> <span class="fu">data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
