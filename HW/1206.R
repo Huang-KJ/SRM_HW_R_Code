@@ -84,11 +84,7 @@ ggplot()+
     geom_line(data = data3, aes(x = MH), stat = "count")+
     geom_bar(data = data3[data3$d2d == 5, ], aes(x = MH))
 
-str(data1)
-str(data3)
-ggplot()+
-    geom_line(data = data1, aes(x = MH), stat = "count")+
-    geom_bar(data = data1[data1$Q132 == 4, ], aes(x = MH))
+
 
 #--------------------------------------------------#
 reCols <- paste0('d2', letters[1:4])
