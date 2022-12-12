@@ -8,6 +8,7 @@
 
 ## HW
 - [HW567](https://huang-kyle.github.io/SRM_HW_R_Code/HW/1206.html)
+- [HW1214](https://huang-kyle.github.io/SRM_HW_R_Code/HW/1214.html)
 
 ## 補充內容
 - [Factor Analysis](https://huang-kyle.github.io/SRM_HW_R_Code/Test/FactorAnalysis.html)
