@@ -12,7 +12,7 @@
 <meta name="author" content="109204035 社會三 黃楷捷">
 <meta name="dcterms.date" content="2022-12-11">
 
-<title>1130作業_人口組</title>
+<title>1214作業_人口組</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -114,7 +114,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">1130作業_人口組</h1>
+<h1 class="title">1214作業_人口組</h1>
 </div>
 
 
@@ -151,10 +151,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#全國" id="toc-全國">全國</a></li>
   <li><a href="#六都" id="toc-六都">六都</a></li>
   </ul></li>
-  <li><a href="#投票" id="toc-投票">投票</a>
+  <li><a href="#性別" id="toc-性別">性別</a>
   <ul>
   <li><a href="#全國-1" id="toc-全國-1">全國</a></li>
   <li><a href="#六都-1" id="toc-六都-1">六都</a></li>
+  </ul></li>
+  <li><a href="#投票行為" id="toc-投票行為">投票行為</a>
+  <ul>
+  <li><a href="#全國-2" id="toc-全國-2">全國</a></li>
+  <li><a href="#六都-2" id="toc-六都-2">六都</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -172,6 +177,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="年齡">年齡</h2>
 <section id="全國" class="level3">
 <h3 class="anchored" data-anchor-id="全國">全國</h3>
+<section id="社會變遷樣本" class="level4">
+<h4 class="anchored" data-anchor-id="社會變遷樣本">社會變遷（樣本）</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ageSet <span class="ot">&lt;-</span> tscs212 [<span class="sc">!</span>(a2y <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'拒答'</span>, <span class="st">'不知道'</span>)), ]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ageSet[, a2y <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(a2y))][, age <span class="sc">:</span><span class="er">=</span> <span class="dv">110</span> <span class="sc">-</span> a2y]</span>
@@ -189,13 +196,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
+<section id="內政部人口統計母體" class="level4">
+<h4 class="anchored" data-anchor-id="內政部人口統計母體">內政部人口統計（母體）</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>popAge <span class="ot">&lt;-</span> <span class="fu">setDT</span>(readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="at">path =</span> <span class="st">"../../../HW/age.xlsx"</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>AG <span class="ot">&lt;-</span> <span class="fu">names</span>(popAge)[<span class="dv">3</span><span class="sc">:</span><span class="dv">13</span>]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>AGR <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_remove_all</span>(<span class="at">string =</span> AG, <span class="at">pattern =</span> <span class="st">"歲"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>popAge <span class="ot">&lt;-</span> popAge[, (AGR) <span class="sc">:</span><span class="er">=</span> .SD <span class="sc">/</span> 總計 <span class="sc">*</span> <span class="dv">100</span>, .SDcols <span class="ot">=</span> AG]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">16</span><span class="sc">:</span><span class="dv">24</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>popAge[County <span class="sc">==</span> <span class="st">"全國"</span>, ][,..N]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   20~29 30~39 40~49 50~59 60~69 70~79 80~89 90~99 100以上
+1:  12.9  14.4  16.3  15.4  13.5  6.84  3.08 0.648  0.0203</code></pre>
+</div>
+</div>
+</section>
+</section>
 <section id="六都" class="level3">
 <h3 class="anchored" data-anchor-id="六都">六都</h3>
+<section id="社會變遷樣本-1" class="level4">
+<h4 class="anchored" data-anchor-id="社會變遷樣本-1">社會變遷（樣本）</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ageSet <span class="ot">&lt;-</span> (ageSet[a4acity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'臺北市'</span>, <span class="st">'臺中市'</span>, <span class="st">'高雄市'</span>), .(<span class="at">groupsCount =</span> .N), <span class="at">by =</span> .(a4acity, ageGroups)]</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                 [, <span class="at">groupsFreq :=</span> groupsCount <span class="sc">/</span> <span class="fu">sum</span>(groupsCount), <span class="at">by =</span> .(a4acity)]</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                 [, .(<span class="at">groupsFreq =</span> groupsFreq <span class="sc">*</span> <span class="dv">100</span>), <span class="at">keyby =</span> .(a4acity, ageGroups)])</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dcast</span>(ageSet, a4acity <span class="sc">~</span> ageGroups, <span class="at">value.var =</span> <span class="st">'groupsFreq'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ageSet <span class="ot">&lt;-</span> (ageSet[a4acity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'臺北市'</span>, <span class="st">'臺中市'</span>, <span class="st">'高雄市'</span>), .(<span class="at">groupsCount =</span> .N), <span class="at">by =</span> .(a4acity, ageGroups)]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                 [, <span class="at">groupsFreq :=</span> groupsCount <span class="sc">/</span> <span class="fu">sum</span>(groupsCount), <span class="at">by =</span> .(a4acity)]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                 [, .(<span class="at">groupsFreq =</span> groupsFreq <span class="sc">*</span> <span class="dv">100</span>), <span class="at">keyby =</span> .(a4acity, ageGroups)])</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dcast</span>(ageSet, a4acity <span class="sc">~</span> ageGroups, <span class="at">value.var =</span> <span class="st">'groupsFreq'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   a4acity 20-29 30-39 40-49 50-59 60-69 70-79 80-89 90-99
 1:  臺北市  12.4  15.7  15.7  20.9  21.6  9.80  3.27 0.654
@@ -204,28 +229,92 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
+<section id="內政部人口統計母體-1" class="level4">
+<h4 class="anchored" data-anchor-id="內政部人口統計母體-1">內政部人口統計（母體）</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">16</span><span class="sc">:</span><span class="dv">24</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>popAge[County <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"臺北市"</span>, <span class="st">"臺中市"</span>, <span class="st">"高雄市"</span>), ..N]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   County 20~29 30~39 40~49 50~59 60~69 70~79 80~89 90~99 100以上
+1: 臺北市  10.7  13.7  16.2  15.0  14.4  8.32  3.63 0.948  0.0428
+2: 臺中市  13.7  15.2  16.4  15.0  12.3  5.83  2.40 0.473  0.0131
+3: 高雄市  12.6  14.1  16.7  15.7  14.1  7.38  2.90 0.539  0.0132</code></pre>
+</div>
+</div>
 </section>
-<section id="投票" class="level2">
-<h2 class="anchored" data-anchor-id="投票">投票</h2>
+</section>
+</section>
+<section id="性別" class="level2">
+<h2 class="anchored" data-anchor-id="性別">性別</h2>
 <section id="全國-1" class="level3">
 <h3 class="anchored" data-anchor-id="全國-1">全國</h3>
-<section id="社會變遷投票率得票率" class="level4">
-<h4 class="anchored" data-anchor-id="社會變遷投票率得票率">社會變遷投票率、得票率</h4>
+<section id="社會變遷樣本-2" class="level4">
+<h4 class="anchored" data-anchor-id="社會變遷樣本-2">社會變遷（樣本）</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>opt <span class="ot">&lt;-</span> (<span class="fu">table</span>(tscs212<span class="sc">$</span>j28) <span class="sc">|&gt;</span> <span class="fu">data.frame</span>())[, <span class="dv">1</span>]</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>voteSet <span class="ot">&lt;-</span> tscs212 [<span class="sc">!</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">7</span><span class="sc">:</span><span class="dv">10</span>]), ]</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>voteSet[, .(投票率 <span class="ot">=</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            宋楚瑜得票率 <span class="ot">=</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span>]) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]),</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>            韓國瑜得票率 <span class="ot">=</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">2</span>]) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]),</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>            蔡英文得票率 <span class="ot">=</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">3</span>]) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">sum</span>(tscs212<span class="sc">$</span>a1 <span class="sc">==</span> <span class="st">"男"</span>) <span class="sc">/</span> <span class="fu">sum</span>(tscs212<span class="sc">$</span>a1 <span class="sc">==</span> <span class="st">"女"</span>)) <span class="sc">*</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 88.9</code></pre>
+</div>
+</div>
+</section>
+<section id="內政部人口統計母體-2" class="level4">
+<h4 class="anchored" data-anchor-id="內政部人口統計母體-2">內政部人口統計（母體）</h4>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 98.2</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="六都-1" class="level3">
+<h3 class="anchored" data-anchor-id="六都-1">六都</h3>
+<section id="社會變遷樣本-3" class="level4">
+<h4 class="anchored" data-anchor-id="社會變遷樣本-3">社會變遷（樣本）</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tscs212[a4acity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"高雄市"</span>, <span class="st">"臺北市"</span>, <span class="st">"臺中市"</span>),</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>        .(性比例 <span class="ot">=</span> <span class="fu">sum</span>(a1 <span class="sc">==</span> <span class="st">"男"</span>) <span class="sc">/</span> <span class="fu">sum</span>(a1 <span class="sc">==</span> <span class="st">"女"</span>) <span class="sc">*</span> <span class="dv">100</span>), by <span class="ot">=</span> .(a4acity)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   a4acity 性比例
+1:  高雄市   94.6
+2:  臺北市   61.5
+3:  臺中市   89.7</code></pre>
+</div>
+</div>
+</section>
+<section id="內政部人口統計母體-3" class="level4">
+<h4 class="anchored" data-anchor-id="內政部人口統計母體-3">內政部人口統計（母體）</h4>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>       性比例
+高雄市   97.2
+臺北市   90.9
+臺中市   96.4</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="投票行為" class="level2">
+<h2 class="anchored" data-anchor-id="投票行為">投票行為</h2>
+<section id="全國-2" class="level3">
+<h3 class="anchored" data-anchor-id="全國-2">全國</h3>
+<section id="社會變遷樣本-4" class="level4">
+<h4 class="anchored" data-anchor-id="社會變遷樣本-4">社會變遷（樣本）</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>opt <span class="ot">&lt;-</span> (<span class="fu">table</span>(tscs212<span class="sc">$</span>j28) <span class="sc">|&gt;</span> <span class="fu">data.frame</span>())[, <span class="dv">1</span>]</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>voteSet <span class="ot">&lt;-</span> tscs212 [<span class="sc">!</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">7</span><span class="sc">:</span><span class="dv">10</span>]), ]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>voteSet[, .(投票率 <span class="ot">=</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>            宋楚瑜得票率 <span class="ot">=</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span>]) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]),</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>            韓國瑜得票率 <span class="ot">=</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">2</span>]) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]),</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>            蔡英文得票率 <span class="ot">=</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">3</span>]) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   投票率 宋楚瑜得票率 韓國瑜得票率 蔡英文得票率
 1:   78.7         3.77         18.9         57.1</code></pre>
 </div>
 </div>
 </section>
-<section id="真實投票率得票率" class="level4">
-<h4 class="anchored" data-anchor-id="真實投票率得票率">真實投票率、得票率</h4>
+<section id="中選會資料母體" class="level4">
+<h4 class="anchored" data-anchor-id="中選會資料母體">中選會資料（母體）</h4>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  投票率 宋楚瑜得票率 韓國瑜得票率 蔡英文得票率
@@ -234,16 +323,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="六都-1" class="level3">
-<h3 class="anchored" data-anchor-id="六都-1">六都</h3>
-<section id="社會變遷投票率得票率-1" class="level4">
-<h4 class="anchored" data-anchor-id="社會變遷投票率得票率-1">社會變遷投票率、得票率</h4>
+<section id="六都-2" class="level3">
+<h3 class="anchored" data-anchor-id="六都-2">六都</h3>
+<section id="社會變遷樣本-5" class="level4">
+<h4 class="anchored" data-anchor-id="社會變遷樣本-5">社會變遷（樣本）</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(voteSet[a4acity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'臺北市'</span>, <span class="st">'臺中市'</span>, <span class="st">'高雄市'</span>),</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>         .(投票率 <span class="ot">=</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]),</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>           宋楚瑜得票率 <span class="ot">=</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span>]) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]),</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>           韓國瑜得票率 <span class="ot">=</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">2</span>]) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]),</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>           蔡英文得票率 <span class="ot">=</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">3</span>]) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])), <span class="at">by =</span> .(a4acity)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(voteSet[a4acity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'臺北市'</span>, <span class="st">'臺中市'</span>, <span class="st">'高雄市'</span>),</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>         .(投票率 <span class="ot">=</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]),</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>           宋楚瑜得票率 <span class="ot">=</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span>]) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>           韓國瑜得票率 <span class="ot">=</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">2</span>]) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>           蔡英文得票率 <span class="ot">=</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">3</span>]) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> <span class="fu">sum</span>(j28 <span class="sc">%in%</span> opt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])), <span class="at">by =</span> .(a4acity)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   a4acity 投票率 宋楚瑜得票率 韓國瑜得票率 蔡英文得票率
 1:  高雄市   79.4         1.44         23.7         54.0
@@ -252,8 +341,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="真實投票率得票率-1" class="level4">
-<h4 class="anchored" data-anchor-id="真實投票率得票率-1">真實投票率、得票率</h4>
+<section id="中選會資料母體-1" class="level4">
+<h4 class="anchored" data-anchor-id="中選會資料母體-1">中選會資料（母體）</h4>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>    縣市 投票率 宋楚瑜得票率 韓國瑜得票率 蔡英文得票率

@@ -1,5 +1,5 @@
 ---
-title: "1130作業_人口組"
+title: "1214作業_人口組"
 date: 2022-12-11
 author:
 - 109204005 社會三 劉人瑜
@@ -31,7 +31,7 @@ tscs212 <- as_factor(tscs212, levels = "default")
 ## 年齡
 
 ### 全國
-
+#### 社會變遷（樣本）
 ```{r}
 ageSet <- tscs212 [!(a2y %in% c('拒答', '不知道')), ]
 ageSet[, a2y := as.numeric(as.character(a2y))][, age := 110 - a2y]
@@ -43,21 +43,61 @@ ageSet$ageGroups <- cut(ageSet$age,
                                    '70-79', '80-89', '90-99', '100以上'))
 prop.table(table(ageSet$ageGroups)) * 100
 ```
+#### 內政部人口統計（母體）
+```{r}
+popAge <- setDT(readxl::read_excel(path = "../../../HW/age.xlsx"))
+AG <- names(popAge)[3:13]
+AGR <- stringr::str_remove_all(string = AG, pattern = "歲")
+popAge <- popAge[, (AGR) := .SD / 總計 * 100, .SDcols = AG]
+N <- c(16:24)
+popAge[County == "全國", ][,..N]
+```
+
 
 ### 六都
-
+#### 社會變遷（樣本）
 ```{r}
 ageSet <- (ageSet[a4acity %in% c('臺北市', '臺中市', '高雄市'), .(groupsCount = .N), by = .(a4acity, ageGroups)]
                  [, groupsFreq := groupsCount / sum(groupsCount), by = .(a4acity)]
                  [, .(groupsFreq = groupsFreq * 100), keyby = .(a4acity, ageGroups)])
 dcast(ageSet, a4acity ~ ageGroups, value.var = 'groupsFreq')
 ```
+#### 內政部人口統計（母體）
+```{r}
+N <- c(1, 16:24)
+popAge[County %in% c("臺北市", "臺中市", "高雄市"), ..N]
+```
 
-## 投票
+##  性別
+### 全國
+#### 社會變遷（樣本）
+
+```{r}
+(sum(tscs212$a1 == "男") / sum(tscs212$a1 == "女")) * 100
+```
+#### 內政部人口統計（母體）
+```{r,echo=FALSE}
+print(98.2)
+```
+### 六都
+#### 社會變遷（樣本）
+
+```{r}
+tscs212[a4acity %in% c("高雄市", "臺北市", "臺中市"),
+        .(性比例 = sum(a1 == "男") / sum(a1 == "女") * 100), by = .(a4acity)]
+```
+#### 內政部人口統計（母體）
+```{r,echo=FALSE}
+sr <- data.frame(性比例 = c(97.2, 90.9, 96.4))
+rownames(sr) <- c("高雄市", "臺北市", "臺中市")
+sr
+```
+
+## 投票行為
 
 ### 全國
 
-#### 社會變遷投票率、得票率
+#### 社會變遷（樣本）
 
 ```{r}
 opt <- (table(tscs212$j28) |> data.frame())[, 1]
@@ -68,7 +108,7 @@ voteSet[, .(投票率 = sum(j28 %in% opt[1:5]) * 100 / sum(j28 %in% opt[1:6]),
             蔡英文得票率 = sum(j28 %in% opt[3]) * 100 / sum(j28 %in% opt[1:5]))]
 ```
 
-#### 真實投票率、得票率
+#### 中選會資料（母體）
 
 ```{r,echo=FALSE}
 data.frame(投票率 = 74.9,
@@ -79,7 +119,7 @@ data.frame(投票率 = 74.9,
 
 ### 六都
 
-#### 社會變遷投票率、得票率
+#### 社會變遷（樣本）
 
 ```{r}
 (voteSet[a4acity %in% c('臺北市', '臺中市', '高雄市'),
@@ -89,7 +129,7 @@ data.frame(投票率 = 74.9,
            蔡英文得票率 = sum(j28 %in% opt[3]) * 100 / sum(j28 %in% opt[1:5])), by = .(a4acity)])
 ```
 
-#### 真實投票率、得票率
+#### 中選會資料（母體）
 
 ```{r,echo=FALSE}
 data.frame(縣市 = c('臺北市', '臺中市', '高雄市'),
