@@ -21,8 +21,7 @@ prop.table(table(ageSet$ageGroups)) * 100
 ageSet <- (ageSet[a4acity %in% c('臺北市', '臺中市', '高雄市'), .(groupsCount = .N), by = .(a4acity, ageGroups)]
                  [, groupsFreq := groupsCount / sum(groupsCount), by = .(a4acity)]
                  [, .(groupsFreq = groupsFreq * 100), keyby = .(a4acity, ageGroups)])
-dcast(ageSet, a4acity ~ ageGroups,
-      value.var = 'groupsFreq')
+dcast(ageSet, a4acity ~ ageGroups, value.var = 'groupsFreq')
 
 # 投票-全國 #
 table(tscs212$j28)
