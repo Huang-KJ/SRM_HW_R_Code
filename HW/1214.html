@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,7 +10,7 @@
 <meta name="author" content="109204018 社會三 李彩瑄">
 <meta name="author" content="109204025 社會三 劉采葳">
 <meta name="author" content="109204035 社會三 黃楷捷">
-<meta name="dcterms.date" content="2022-12-11">
+<meta name="dcterms.date" content="2023-01-24">
 
 <title>1214作業_人口組</title>
 <style>
@@ -108,7 +108,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body>
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-full">
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
 </div>
 <main class="content column-page" id="quarto-document-content">
 
@@ -134,9 +134,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 11, 2022</p>
+      <p class="date">January 24, 2023</p>
     </div>
   </div>
+  
     
   </div>
   
@@ -241,6 +242,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 3: 高雄市  12.6  14.1  16.7  15.7  14.1  7.38  2.90 0.539  0.0132</code></pre>
 </div>
 </div>
+<p>社會變遷樣本資料與內政部人口統計的母體資料在年齡的差距並不大，全國最大的為誤差約5%左右，六都最大的誤差約在7%左右，六都因為樣本數較全國來得少，因此抽樣誤差較大。</p>
+<p>這樣差距不大的原因可能是因為社會變遷的抽樣分層所採用的人口結構變項包含「十五至六十四歲人口百分比」及「六十五歲及以上人口百分比」，因此採用「分層多階段PPS抽樣法」抽取樣本時，可以維持人口結構的相似性。</p>
 </section>
 </section>
 </section>
@@ -291,6 +294,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 臺中市   96.4</code></pre>
 </div>
 </div>
+<p>社會變遷樣本資料與內政部人口統計母體資料，全國的性比例的差距不大，誤差約10%左右，但六都中台北的性比例誤差相較之下大很多，約有30%，其餘兩縣市差異不大。</p>
+<p>台北市差異較大的原因可能是因為社會變遷的抽樣分層所採用的人口結構變項並沒有包含性別變項，因此在「分層多階段PPS抽樣法」後繼續以PPS等距抽樣抽取「人」的時候，性別可以說是被隨機選取的，在縣市樣本數較少的時候，誤差就會較大，而全國因為樣本較多，在性別為二分變項的情況下，差異就不會太大。</p>
 </section>
 </section>
 </section>
@@ -351,6 +356,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 3 高雄市   77.4         3.14         34.6         62.2</code></pre>
 </div>
 </div>
+<p>社會變遷樣本資料與中選會公佈的2020總統大選母體資料中，無論全國還是六都，投票率及蔡英文和他 宋楚瑜得票率的差異都不大，及韓國瑜的得票率卻有很大的差異。</p>
+<p>這樣的原因可能是因為政治傾向是較敏感的訊息，宋楚瑜和韓國瑜並沒有當選，當初這兩位候選人的支持者可能比較不願意透露自己的政治傾向，改而回答忘記了之類的選項，而蔡英文身為當選人，其支持者就比較願意透露自己的政治傾向。至於投票率則因為比較不會涉及敏感的政治傾向問題，所以大家都比較願意如實回答，差異也就不大。</p>
 </section>
 </section>
 </section>
@@ -398,7 +405,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -434,24 +458,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>

@@ -45,10 +45,6 @@ data.frame(縣市 = c('臺北市', '臺中市', '高雄市'),
            蔡英文得票率 = c(53.64, 56.95, 62.23))
 
 
-
-
-
-
 prop.table(table(ageSet[a4acity == '臺北市', .(ageGroups)]))
 prop.table(table(ageSet[a4acity == '臺中市', .(ageGroups)]))
 prop.table(table(ageSet[a4acity == '高雄市', .(ageGroups)]))
